@@ -1,0 +1,146 @@
+For react application donwnload and install npm and npx
+To create react application run - npx create-react-app "project name"
+cd "project name" and run npm start 
+Go to src/App.js and change Edit to "hello world"
+Your basic first application is ready.
+
+Other way to create React package 
+npm install create-react-app -g
+then just do create-react-app "project name"  
+
+Folder Structure and Work flow
+
+Package.json = Contains all the dependencies and scripts required for project 
+Pacjage-lock.json = to ensure smooth installation of the packages.
+Folder-node-module = is the folder all the dependecies are installed, generated when npm command is run 
+public-folder = 
+	manifest.json = is concerned with progressive web app
+	index.html = It is the only html file you will have in your entire application.The view in the browser may change but this the ultimate page which will render.No changes are made in this file, if needed can change only the header tag and body tag should not be touched as it is controlled by React.
+	<div id = "root"> we call root DOM node as everything as inside is controlled by React.
+	
+src-folder = mostly used folder for development
+	index.js=starting point for our application 
+		  in index.js we specify root component which is App component and DOM element which is controlled by react.
+		  DOM element in our example is 
+		  In hello world program App component is rendered inside root DOM node
+	App.js   = contains a app compenent  
+		   Represents the view which we see in the browser.
+	App.css = CSS file for styling
+	App.test.js = contains a simple test case
+	index.css = applies style to the body tag.
+	service.js = it is for progressive app and can be ignored as beginner
+	
+	
+Flow :
+* when you run the command npm start index.html file is served in the browser.
+* Index.html contains the root DOM node, next the control enters the index.js where ReactDOM renders the App component onto the root DOM node.
+* the App component(app.js)contains the html which is ultimately displayed in the browser.
+
+Component :
+* Different component come under main root component.
+* Nested components makeup for one part of the UI and all the components make up the whole page of UI
+* Components are Reusable, the same component can be used with different properties to display different information
+* Components may contain the other components.
+* component code is inserted in .js file and can be incorpated in .jsx file as well
+
+Component Types
+In react there are two component types
+Stateless Functional Component  and  stateful class component
+* Functional component are literally Javascript functions, returns html which is dispalyed on UI
+
+* Class components on the other hand regular ES6 classes that extends component class from the react library, they must contain render method which inturn returns HTML.(render() method)
+
+Functional Components
+* Its just a javascript functions, they can recieve object of propertie-props and return HTML called JSX
+Creating Functional Components
+* Create a Folder called components
+* inside a folder create file Greet 
+* Inside Greet first import react
+* then define afunction and do a export of that function -using default export 
+* then we have to render that function through our App component, by importing that function and writing it in a tag(<Greet/>), in div tags in App.js
+* Use Arrow function as much as possible
+* Named Export:
+	* exporting the arrow function itself 
+	* we should import in a curly braces
+	
+Class Components
+* optionally recieve props as input and return HTML 
+* It can maintian some information which is private for that component and use that information to describe the user interface this is called state.
+
+Function vs Class Components 
+Functions
+* Use Functional components as much as possible
+* Absence of 'this' key compared to class component, where it confuses the beginner
+* solution can be arrived without state, state for every component makes maintainance huge
+* Functions are mainly responsible for user insterface
+* hence, It is also called dumb/presentational components
+
+Class
+* It is more feature rich
+* Maintain there own private data, also known as state
+* Complex UI logic can be written 
+* provide lyfecycle hooks
+* It is also called statefull/smart/Container
+
+JSX
+Show both way of doing things, using jsx and without using JSX
+With using its just html inside return()
+without using JSX, react library provides a function called React.createElement which takes many number of arguments
+Syntax : React.createElement(tagname, property, subject or text), 
+
+Props with function
+* Components are reusable
+* Use Greet function as many times you need in app.js, with a property "name"
+* Then we can pass data with props like we’re giving an argument to a function:
+* Use the property in greet.js in the form of {prop.name}
+* If you want to print any line between components which are used twice, <greet attrs ="" ><p></p></greet>, here inside greet tag you will be writing main properties and in <p> you will be writing any child props.
+	* inside greet.js simple mention {props.children} to render it.
+	* In JSX we always have to keep in mind on component should be wrapped with only one tag althrough, though it can contain nested 		tags.
+* props are immutable - if you need to change any thing inside component for prop, it can't be changed
+	
+props with Class
+* It is similar to function, but the only difference is, doesn't require to pass props in function argument, instead use this keyword directly {this.props.name}
+
+props Vs State
+props get passes to the component           state is managed within the component
+function parameter                          variables declared in the function body
+props are immutable                         state can be changed
+props - functional components               usestate Hook - functional components
+this.props - class components 	      this.state - Class Components
+
+
+state
+* A state is object privately mentioned inside the component
+* A state can influence what is rendered in the browser and can be changed with the help of events
+* refer message.js for state.
+
+setState
+* Use ES7 React snippets in vscode and use that to automatically give class by typing rce+tab. rconst for constructor 
+* setstate is used to change the value of the state.
+* Always make use of setState and never modify the state directly
+* Code has to be executed after the state has been updated?. Place that code in the call back function which is the second argument to the setState method.
+* when you have to update state based on the previous state value, pass in a function as an argument instead of the regular object.
+* when you modify the state directly it wont rerender the component.
+* React may group multiple setstate calls into a single update for better performance.
+ 	so whenever you want to update the value based on the previous state, we need to send function inside set state method, instead of object. 
+ 	
+Destructuring
+
+
+
+	
+
+
+ 
+	
+ 
+
+
+
+
+
+
+
+
+
+
