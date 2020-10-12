@@ -1,0 +1,4 @@
+Use ES7 React snippets in vscode and use that to automatically give class by typing rce+tab. rconst for constructor
+rfce+tab ==> Functional Component
+rconst ==> constructor 
+

@@ -97,9 +97,27 @@ Props with function
 	* inside greet.js simple mention {props.children} to render it.
 	* In JSX we always have to keep in mind on component should be wrapped with only one tag althrough, though it can contain nested 		tags.
 * props are immutable - if you need to change any thing inside component for prop, it can't be changed
+    const Greet = props =>{
+    console.log(props)
+    return (
+        <div>
+            <h1> Hello {props.name} is {props.heroname}</h1>
+            {props.children}
+        </div>
+    )
+} 
+(Code Changed in destructuring)
+
 	
 props with Class
 * It is similar to function, but the only difference is, doesn't require to pass props in function argument, instead use this keyword directly {this.props.name}
+class Welcome extends Component {
+    render() {
+        return <h1>Welcome {this.props.name} a.k.a {this.props.heroname}</h1>
+    }
+}
+(Code Changed in destructuring)
+ 
 
 props Vs State
 props get passes to the component           state is managed within the component
@@ -109,10 +127,13 @@ props - functional components               usestate Hook - functional component
 this.props - class components 	      this.state - Class Components
 
 
+
 state
 * A state is object privately mentioned inside the component
 * A state can influence what is rendered in the browser and can be changed with the help of events
 * refer message.js for state.
+
+
 
 setState
 * Use ES7 React snippets in vscode and use that to automatically give class by typing rce+tab. rconst for constructor 
@@ -124,10 +145,143 @@ setState
 * React may group multiple setstate calls into a single update for better performance.
  	so whenever you want to update the value based on the previous state, we need to send function inside set state method, instead of object. 
  	
+ 	
+ 	
 Destructuring
+==> In functional Components
+* Destructuring helps us unpack values from arrays or properties from objects into distinct variables.
+* we can just pass name, heroname in function arguments instead of props and we can directly declare {name} and {heroname} in body instead of {props.name} ==> first way destructuring in the parameter
+const Greet = ({name,heroname}) =>{
+    return (
+        <div>
+            <h1> Hello {name} is {heroname}</h1> 
+        </div>
+    )
+} 
+* Another way of extracting attribites from props is giving props in the argument of a function and writing constants {'attrs'} = props 
+    const Greet = props =>{
+    const {name, heroname} = props
+    return (
+        <div>
+            <h1> Hello {name} is {heroname}</h1> 
+        </div>
+    )
+}  
+	
+Destructuring ==> In Class Components
+* In class we tend to destructure the props in render() method
+    class Welcome extends Component {
+    render() {
+        const {name, heroname} = this.props
+        return <h1>Welcome {name} a.k.a {heroname}</h1>
+    }
+}
+* We can also destructure the state by just adding this line
+	const {state1, state2} = this.state in render method
 
 
 
+Event Handling ==>
+Function Component
+* React Events are defined using camelCase rather than lowercase
+* In Jsx instad of passing string in eventhandler we will be passing function, hence it is specified in curly brackets{}
+* While specifying the function in the eventhandler it is function not function call, so dont use paranthesis after it
+	Wrong                                                                     Correct
+    <button onClick={clickHandler()}>click</button>                      <button onClick={clickHandler}>click</button>
+   Refer FinctionClick for function event handling
+
+ Class Component
+* It is same as Function component but while defining a function in eventhandler just specify {this.function}
+      <button onClick={this.clickHandler}>click</button> 
+      
+     
+     
+Binding Event Handlers
+* "this" keyword is undefined in an eventhandler hence we need to bind the event in react class components
+* There are different methods to bind the events
+Approach 1:- Using bind keyword
+	clickHandler(){
+        this.setState({
+            message : 'GoodBye '
+        })
+        console.log(this)
+    }
+    
+
+    render() {
+        return (
+            <div>
+                <div>{this.state.message}</div>
+                <button onClick = {this.clickHandler.bind(this)}>click</button>
+            </div>
+        )
+    }
+}
+Review - Not recommended as performance complications
+
+Approach 2:- Arrow Function method
+* Refer to the message.js
+
+Review - Not Recommended as performance complications as it is similar to 1st approach
+
+Approach 3:- Most used, and seen in React Documentation
+* This method deals with event handler in the constructor as opposed to binding in the render method.
+	constructor(props) {
+        super(props)
+    
+        this.state = {
+             message: 'Hello'
+        }
+        this.clickHandler = this.clickHandler.bind(this)
+    }
+    
+    (skipped clickHandler here but should be defined)
+    
+      render() {
+        return (
+            <div>
+                <div>{this.state.message}</div>
+                {/* <button onClick = {this.clickHandler.bind(this)}>click</button> */}
+                <button onClick = {this.clickHandler}>click</button>
+            </div>
+        )
+    }
+}
+Review - Recommended in React documentation and is best option
+
+Approach 4:-Use Arrow function as class property 
+	Just replace the event function with arrow function, in our case clickHandler function
+	 clickHandler = () => {
+        this.setState({
+            message: 'Goodbye'
+        })
+    }
+Review - Its still in experimentation stage, as per 2018 tutorial
+
+
+
+Methods as props
+* To achieve  - When I click on the button in child component the method in parent component should be executed using props
+* We should pass the method itself in the prop ==> refer ParentCompoent.js and ChildComponent.js
+	Step 1 - Define a method in  Parent Component
+	step 2 - render the child component in parent Component by defining tag as in APP.js
+	step 3 - Pass the method in childcomponent tag as props in parentComponents
+	step 4 - in the childcomponent.js access the methods as props object  
+
+* We can also pass parameters back from childcomponent to parentComponent
+	in order use parameter use arrowfunction syntax, check 
+
+
+
+
+
+
+
+
+
+      
+      
+    
 	
 
 
