@@ -1,4 +1,13 @@
+npx create-react-app my-app
+cd my-app
+npm start
 Use ES7 React snippets in vscode and use that to automatically give class by typing rce+tab. rconst for constructor
 rfce+tab ==> Functional Component
 rconst ==> constructor 
 
+
+
+
+
+Conventions or Rules to follow 
+The fucntion name or class name should always be camelcase, inorder to import it in any other file.

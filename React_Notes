@@ -10,15 +10,14 @@ then just do create-react-app "project name"
 
 Folder Structure and Work flow
 
-Package.json = Contains all the dependencies and scripts required for project 
-Pacjage-lock.json = to ensure smooth installation of the packages.
-Folder-node-module = is the folder all the dependecies are installed, generated when npm command is run 
-public-folder = 
+* Package.json = Contains all the dependencies and scripts required for project 
+* Pacjage-lock.json = to ensure smooth installation of the packages.
+* Folder-node-module = is the folder all the dependecies are installed, generated when npm command is run 
+* public-folder = 
 	manifest.json = is concerned with progressive web app
-	index.html = It is the only html file you will have in your entire application.The view in the browser may change but this the ultimate page which will render.No changes are made in this file, if needed can change only the header tag and body tag should not be touched as it is controlled by React.
+	index.html = It is the only html file you will have in your entire application.The view in the browser may change but this the ultimate page which will render.No changes are made in this file, if needed can change only the header tag, but body tag should not be touched as it is controlled by React.
 	<div id = "root"> we call root DOM node as everything as inside is controlled by React.
-	
-src-folder = mostly used folder for development
+* src-folder = mostly used folder for development
 	index.js=starting point for our application 
 		  in index.js we specify root component which is App component and DOM element which is controlled by react.
 		  DOM element in our example is 
@@ -50,7 +49,7 @@ Stateless Functional Component  and  stateful class component
 
 * Class components on the other hand regular ES6 classes that extends component class from the react library, they must contain render method which inturn returns HTML.(render() method)
 
-Functional Components
+Functional Components(Refer Greet.js)
 * Its just a javascript functions, they can recieve object of propertie-props and return HTML called JSX
 Creating Functional Components
 * Create a Folder called components
@@ -72,7 +71,7 @@ Functions
 * Use Functional components as much as possible
 * Absence of 'this' key compared to class component, where it confuses the beginner
 * solution can be arrived without state, state for every component makes maintainance huge
-* Functions are mainly responsible for user insterface
+* Functions are mainly responsible for user interface
 * hence, It is also called dumb/presentational components
 
 Class
@@ -82,11 +81,12 @@ Class
 * provide lyfecycle hooks
 * It is also called statefull/smart/Container
 
-JSX
-Show both way of doing things, using jsx and without using JSX
+JSX(Refer Hello.js)
+Show both way of doing things, using jsx and without using JSX - Refer Hello.js
 With using its just html inside return()
 without using JSX, react library provides a function called React.createElement which takes many number of arguments
 Syntax : React.createElement(tagname, property, subject or text), 
+
 
 Props with function
 * Components are reusable
@@ -94,7 +94,7 @@ Props with function
 * Then we can pass data with props like we’re giving an argument to a function:
 * Use the property in greet.js in the form of {prop.name}
 * If you want to print any line between components which are used twice, <greet attrs ="" ><p></p></greet>, here inside greet tag you will be writing main properties and in <p> you will be writing any child props.
-	* inside greet.js simple mention {props.children} to render it.
+	* inside greet.js simply mention {props.children} to render it.
 	* In JSX we always have to keep in mind on component should be wrapped with only one tag althrough, though it can contain nested 		tags.
 * props are immutable - if you need to change any thing inside component for prop, it can't be changed
     const Greet = props =>{
@@ -108,6 +108,8 @@ Props with function
 } 
 (Code Changed in destructuring)
 
+
+
 	
 props with Class
 * It is similar to function, but the only difference is, doesn't require to pass props in function argument, instead use this keyword directly {this.props.name}
@@ -119,12 +121,15 @@ class Welcome extends Component {
 (Code Changed in destructuring)
  
 
+
+
 props Vs State
 props get passes to the component           state is managed within the component
 function parameter                          variables declared in the function body
 props are immutable                         state can be changed
 props - functional components               usestate Hook - functional components
 this.props - class components 	      this.state - Class Components
+
 
 
 
@@ -146,6 +151,7 @@ setState
  	so whenever you want to update the value based on the previous state, we need to send function inside set state method, instead of object. 
  	
  	
+ 
  	
 Destructuring
 ==> In functional Components
@@ -167,7 +173,7 @@ const Greet = ({name,heroname}) =>{
         </div>
     )
 }  
-	
+
 Destructuring ==> In Class Components
 * In class we tend to destructure the props in render() method
     class Welcome extends Component {
@@ -178,6 +184,7 @@ Destructuring ==> In Class Components
 }
 * We can also destructure the state by just adding this line
 	const {state1, state2} = this.state in render method
+
 
 
 
@@ -195,6 +202,7 @@ Function Component
       <button onClick={this.clickHandler}>click</button> 
       
      
+ 
      
 Binding Event Handlers
 * "this" keyword is undefined in an eventhandler hence we need to bind the event in react class components
@@ -260,6 +268,7 @@ Review - Its still in experimentation stage, as per 2018 tutorial
 
 
 
+
 Methods as props
 * To achieve  - When I click on the button in child component the method in parent component should be executed using props
 * We should pass the method itself in the prop ==> refer ParentCompoent.js and ChildComponent.js
@@ -270,7 +279,265 @@ Methods as props
 
 * We can also pass parameters back from childcomponent to parentComponent
 	in order use parameter use arrowfunction syntax, check 
+	
 
+
+	
+Conditional Rendering(UserGreeting.js)
+* Rendering some html things on conditions, you hide and show it according to the conditions.
+Approach 1:
+	=> writing if and else statements on before returning anything
+	if (this.state.isLoggedIn)
+            return <div>Welcome Vivek
+            <button onClick={() => this.changeMessage()}>Logout</button>
+            </div>
+            else {
+            return<div>Welcome Guest
+            <button onClick={() => this.changeMessage()}>Login</button>
+            </div>
+        } 
+        => we cannot write if and else condition on <div> tags directly as JSX doesn't support that
+        
+Approach 2:
+	=> Element Variables - Just write if else condition in javascript variables 
+	let message
+        if (this.state.isLoggedIn) {
+            message = <div>Welcome Vivek</div>
+        } else {
+            message = <div>Welcome Guest</div>
+        }
+
+    return <div>{message}</div>
+	
+Approach 3: 
+	=> Ternary operator - Allows to write conditions inside JSX - simple and mostly used
+	return(
+            this.state.isLoggedIn ? 
+            <div>Welcome Vishwas</div> : 
+            <div>Welcome Guest</div>
+        )
+        Condition ? True : Flase
+        
+Approach 4: short Circuit operator
+	=> Used when you have conditions link either you want render something or nothing.
+	return this.state.isLoggedIn && <div>Welcome Vivek</div>
+	
+	
+
+List Rendering(refer todo.js and NameList.js)
+	=>You can use map method to render items inside the list one by one
+	function NameList() {
+	    const names = ['Vivek','Aditya','Ashwin']
+	    const nameList = names.map(name => <h2>{name}</h2>)
+	    return (
+		<div>{nameList}
+		</div>
+    )
+}
+     =>Or you can use a seperate component to render it using props, refer above given files
+     
+     
+     
+     
+Lists and Keys
+* A "key" is special string attribute you need to include when creating lists of elements.
+* keys a give elements a stable identity 
+* keys help React identify which items have changed, are added, or are removed.
+* Help in efficient update of user interface
+* Refer NameList.js and todo.js
+	const todoList = todos.map(todoss => <Todo key={todoss.id} todoss={todoss} />)
+	
+	
+
+
+Index as key(second statement in NameList.js)
+* When key prop is not given, then react will automatically index value given by react
+* Index as key should only be used when
+ 1. the items in your list do not have unique id, if you have use that as the key
+ 2. the list is a static list and will not change
+ 3. the list will never be recordered or filtered
+ 
+ 
+ 
+ 
+Styling React Components
+ Approach 1:
+ 	=>  StyleSheet method, create a new style sheet in components folder(myStyle.css), add a class there, and import that in necessary 
+ 	component(StyleSheet.js)
+ 	=> We can specify simply the classname with className keyword inside html tag or
+ 	=> we can bring it as props (currently done with primary class)
+ 	=> for usage of multiple classes we should use template literals(` `)
+ 	
+ Approach 2:(refer inline.js)
+ 	=>inline method, inside the component file itself we will be writing the css properties in an object, and with key as css property and value as string.
+ 	
+Approach 3:
+	=>CSS modules 
+	=>classes are locally scoped, css style applies all the child components as well
+	=>but "import Styles from './appStyles.module.css'" cannot be imported for any child components as they are imported as style
+ 	
+
+
+Basics of form handling
+ Controlled Component:
+ 	=>In the input tag mention value attribute where we will be giving state, that is {this.state.username} continue with trailing 	space and give an event 
+ 	#<input type='text' value={this.state.username} onChange={this.handleUsernameChange} />
+ 	=>follow the same procedure to change the state, that is initiate with an empty string.
+ 	=>To catch the content coming from input tag use "event.target.value" in setstate and pass event as an argument in the handler function.
+ 	=>for <select> tag use the first option while initiating the state.
+ 	=>Dont forget the prevent default method to be given for submit button, you can give that in the handler function.
+ 	=>When ever you write something in input box, state gets refreshed and chenged accordingly.
+ 	
+
+
+LifeCycle Methods
+* Life Cycle method is the cycle which goes through when we create and render the component.
+* Life Cycle involves 4 different methods mainly.
+  =>Mounting= When an instance of a component is being created and inserted into the DOM 
+  =>Updating= When a component is bieng re-rendered as a result of changes to either its props or state
+  =>Unmounting= when a component is being removed from the DOM 
+  =>Error Handling = when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
+* In each of the above method there are many sub methods.
+  =>Mounting = constructor, static gerDerivedStateFromProps, render and componentDidMount
+  =>Updating = static getDerivedStateFromProps, shouldComponentUpdate, render, getSnapshotBeforeUpdate and componentDidupdate.
+  =>Unmounting = componentWillUnmount
+  =>Error Handling = static getDerivedStateFromError and componentDidCatch
+  
+  
+Basics of Form
+* the form, label and input tags are as used in html
+* the value of the input field is set to the state property, and there is onChange event fired whenever there is change in the input field value. in the onChange handler we use the setstate method to update the state.
+* we should pass a parameter to the handler(that is event handler function), that is "event" which helps to  extract or catch the value given in input element using event.target.
+ 	  handleTopicChange = (event) => {
+        this.setState({
+            topic:event.target.value
+        })
+        console.log(this.state.topic)
+    }  
+* For input and textarea and other fields, the state can be empty string, but for select tag, intialy the state must be one of the option, otherwise setstate doesn't work on that.
+* to handle the submit of the form, add onSubmit event on the form tag, which can be difined using a handler function(don't forget to use a prevent default function)
+
+
+
+
+Lifecycle methods
+* When we create a react component, the component goes through several stages in its life cycle
+* There are Lifecycle methods for class components, this methods doesn't exist for functional components.
+* the methods are classified into 4 phases
+ => Mounting - when a instance of a component is bieng created and inserted into the DOM
+ => updating - when a component is being rerendered as result of changes to either its props or state
+ => Unmounting - when a component is bieng removed from the DOM
+ => error handing - when there is an error during the rendering in a lifecycle method, or in the constructor of any child component.
+ these phases different method, which can be used
+ Mounting  => constructor , static getDerivedFormProps, render and componentDidMOunt
+ Updating  => static getDerivedStateProps, shouldComponentUpdate, render, getSnapshotbeforeupdate and componentDidUpdate.
+ Unmounting => componentWillUnmount
+ Error Handling => static getDerivedStateError and componentDidCatch.
+ 
+ 
+ 
+ 
+Mounting Lifecycle Methods(refer to LifecycleA.js)
+* Constructor(props) - A special fucntion that will get called whenever a new component is created
+      =>it is good for initializing state or Binding the event handlers
+      =>We should not make http request for with in a constructor(should not cause side effects)
+      =>super(props) should be used when building our own constructor, otherwise this.props won't work
+      =>Only in constructor we can directly call this.state to overwrite the state, in all other cases it should be this.setstate.
+      
+* static getDerivedFormProps(props, state) - Rarely used lifecycle method, this method are used when the state of the component dependson the changes in props over time.
+	=> since this method is static method, we cannot use "this" keyword in this method, so you have to just return an object which represent a new state of a component.
+	=>Should not call http request in this method as well.(should not cause side effects)
+	
+* Render() - Only required methiod in the class component.
+	=> its function is to read props and state and return jsx which is rendered on the UI 
+	=> should not change state or interact with DOM or make ajax calls from this method.(should not cause side effects)
+	=> Right after the parent render method, the children components lifecycle methods are also executed.
+	
+* componentDidMount - Invoked only once throughout the lifecycle of the DOM.
+		=>Invoked immediately after a component and all its children components have been rendered to the DOM 
+		=> Cause side effects - interact with the DOM or perform  any ajax calls to load data.
+		
+* just console_log all the methods to see how it flow goes, as Done in LifecycleA file.
+* When we have the child component, parent component's first three methods renders first(Constructor, Static getDerivedFormProps and Render method) after that, the child components all four methods gets executed and finally parent component's componentDidMount gets executed. 
+
+
+
+
+Updating Lifecycle Methods()(refer LifecycleA.js and LifecycleB.js files)
+* There are 5 methodsm, in which 3 are rarely used.
+
+* static getDerivedStateFromProps(props, state) -
+		=> Method is called everytime a component is re rendered
+		=> this method are used when the state of the component dependson the changes in props over time.
+		=> should not change state or interact with DOM or make ajax calls from this method.(should not cause side effects)
+		=> Rarely Used method.
+		
+* ShouldComponentUpdate(nextProps, nextState) -
+		=> Recieves updated props and state.
+		=> This method dictates if the component should rerender or not, by default all components re-render when they recieve 	props or when there states changes. This method can prevent that default behavior by returning false. 
+		=> it compares the existing state and props values with new state and props values and returns true or false to rerender 	sthe component accordingly.
+		=> This method is basically for performance optimisation.
+		=> Should not call http request and setstate method as well.(should not cause side effects)
+		=> Rarely used method.
+		
+
+* Render() - Same as above .
+
+* getSnapBeforeUpdate(prevProps, PrevState) - 
+		=>gets previous props and states as arguments and called right before the changes from the virtual DOM are to be 		reflected in the DOM 
+	=> Capture some information from the DOM.
+	=> Method will either return null or return the value.Returned value will be passed as the third parameter to the next method.
+	
+* ComponentDidUpdate(prevprops,prevState,snapshot) - 
+	=>called after the render is finished in the re-render cycles.
+	=>Called once in rerender method.
+	=>cause side effects, suitable to make ajax call based on the previous and current props value.
+	
+* Render and componentDidupdate are the two methods mostly used in updating phase.
+
+
+
+
+Unmounting Phase Method
+*It involves only one method
+* componentWillUnmount 
+			=>method is invoked immediately before a component is unmounted and destroyed.
+			=>cancelling any network requests, removing event handles, cancelling any subscription and also invalidating 
+			timers.
+			=>Do not call the setState method.
+			
+
+
+Fragments
+
+* It is termed in the advanced section of the document.
+* Fragments lets you group list of children eliments without adding extra nodes to the DOM.
+* Remember we discussed about jsx, where all the code should be enclosed in one tag that is div tag,  it is simply creating one extra node in react DOM, so go ahead and remove the div tag and include <React.Fragments>.(Refer FragmentDemo.js)
+* Imagine this scenario, Where you have parent and child component, in parent component you are using <table> tag as main tag in jsx, so no problem, but you want pust columns of a table in child component, then you are writing <td> tags inside jsx enclosed by div tag, hence react will give an error saying, you cannot include <td> tag a child of <div> tag, so you <React Fragments> comes to your help.
+* Adding key pending
+			
+		
+		
+		
+
+	
+
+
+
+ 
+ 
+ 
+ 
+
+
+
+
+
+	
+	
+
+
+	 
 
 
 
@@ -297,4 +564,4 @@ Methods as props
 
 
 
-
+ 
