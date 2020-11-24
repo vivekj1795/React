@@ -1,8 +1,9 @@
-For react application donwnload and install npm and npx
+For react application donwnload and install node js
 To create react application run - npx create-react-app "project name"
 cd "project name" and run npm start 
 Go to src/App.js and change Edit to "hello world"
 Your basic first application is ready.
+
 
 Other way to create React package 
 npm install create-react-app -g
@@ -62,7 +63,7 @@ Creating Functional Components
 	* exporting the arrow function itself 
 	* we should import in a curly braces
 	
-Class Components
+Class Components(refer welcome.js)
 * optionally recieve props as input and return HTML 
 * It can maintian some information which is private for that component and use that information to describe the user interface this is called state.
 
@@ -153,7 +154,7 @@ setState
  	
  
  	
-Destructuring
+Destructuring(refer Greet.js)
 ==> In functional Components
 * Destructuring helps us unpack values from arrays or properties from objects into distinct variables.
 * we can just pass name, heroname in function arguments instead of props and we can directly declare {name} and {heroname} in body instead of {props.name} ==> first way destructuring in the parameter
@@ -174,7 +175,7 @@ const Greet = ({name,heroname}) =>{
     )
 }  
 
-Destructuring ==> In Class Components
+Destructuring ==> In Class Components(refer Welcome.js)
 * In class we tend to destructure the props in render() method
     class Welcome extends Component {
     render() {
@@ -188,7 +189,7 @@ Destructuring ==> In Class Components
 
 
 
-Event Handling ==>
+Event Handling ==>(EventBind.js)
 Function Component
 * React Events are defined using camelCase rather than lowercase
 * In Jsx instad of passing string in eventhandler we will be passing function, hence it is specified in curly brackets{}
@@ -258,7 +259,7 @@ Approach 3:- Most used, and seen in React Documentation
 Review - Recommended in React documentation and is best option
 
 Approach 4:-Use Arrow function as class property 
-	Just replace the event function with arrow function, in our case clickHandler function
+	Just replace the event handlerfunction with arrow function, in our case clickHandler function
 	 clickHandler = () => {
         this.setState({
             message: 'Goodbye'
@@ -508,15 +509,71 @@ Unmounting Phase Method
 			
 
 
-Fragments
+
+
+Fragments (Refer to Table.js and Column.js)
 
 * It is termed in the advanced section of the document.
 * Fragments lets you group list of children eliments without adding extra nodes to the DOM.
 * Remember we discussed about jsx, where all the code should be enclosed in one tag that is div tag,  it is simply creating one extra node in react DOM, so go ahead and remove the div tag and include <React.Fragments>.(Refer FragmentDemo.js)
 * Imagine this scenario, Where you have parent and child component, in parent component you are using <table> tag as main tag in jsx, so no problem, but you want pust columns of a table in child component, then you are writing <td> tags inside jsx enclosed by div tag, hence react will give an error saying, you cannot include <td> tag a child of <div> tag, so you <React Fragments> comes to your help.
-* Adding key pending
-			
+* Items in the list nees key prop, hence Fragments take attibutes key={item.id}
+* <React.fragments> can be replaced with <> and </>, there is on e limitations for this, that is we cannot pass in key attribute.
+
+
+
+
+
+
+Pure (Refer PureComp.js, RegularComp.js, ParentComp.js)
+
+* Till now we were creating class component, by extending component class from react.
+* Now we can create a class component with pure component
+* Consider this scenario, where you have parent component and two child component, in which one is regular component and another is pure class component.
+	=> Just create a state and setstate with interval of 2seconds in parentcomp and pass it on to regularprop and purecomp through 	props. put a console.log in each of the component. 
+	=>Now,when you check the browser you will see, msges from three components at the first and for every two seconds setstate gets 	refreshed and you will see respective msges from parent and regular components. when parent component updates child components also 	updates automaically. But you don't see msges from pure component and why   	 is that?...,  
+	=>     	Regular Component							Pure Component
+		A regularcomponent does not implement the 		|	A Pure component on the other hand implements
+		shouldComponentUpdate method. It always returns	|	shouldComponentUpdate with a shallow props and 
+		true by default                                       |	state comparision.
 		
+	=> Shallow Comparision - there are two approaches for this comparision
+		primitive Types -  
+		 =>a (SC) b returns if a and b have the same value and are of the same type.
+		 	ex: string 'vivek'(SC) string 'vivek' returns True
+		 	
+		 Complex Types -
+		  => a (sc) b returns if a and b references the exact same object.
+		  	var a = [1,2,3]
+		  	var b = [1,2,3]
+		  	var c = a 
+		  	
+		  	a (sc) b #false
+		  	a (sc) c  #true
+	=> A pure component implements shouldComponentUpdate with a shallow prop and state component.
+	
+		It does shallow comparision of prevState with the currentState   
+		It does shallow comparision of prevProps with the currentProps    ==> When there is a difference the component will Re render.  
+	=> By converting parent component class to pure component, then nothing will rerender until it sees a difference in shallow comparision.
+	=> Will have performance boost if we use Pure.
+	=> One thing to remember here is, we should not change anything or mutate in the existing array or object, if you add anything into an array, the shallow comparision doesn't see the difference here as it points to same reference, hence re render doesn't happen.
+	=> Always return new object or array when dealing with pure components.
+	=> It is a good idea to ensure that all the children compoenents are also pure to avoid unexpected behaviour.
+	
+
+Memo(refer Memocomponent.js and Parentcomponent.js)
+
+=> Pure components only work with class components, the same thing can be achieved in functional components as well and that's where "memo" comes into picture.
+=> Just write function component and in the end at "default export" export the component with React.memo(Memocomponent) to use memo.
+
+		  	 
+		  	
+		  	
+		  	
+		
+		
+		
+
 		
 		
 
