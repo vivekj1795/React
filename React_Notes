@@ -441,15 +441,15 @@ Lifecycle methods
 Mounting Lifecycle Methods(refer to LifecycleA.js)
 * Constructor(props) - A special fucntion that will get called whenever a new component is created
       =>it is good for initializing state or Binding the event handlers
-      =>We should not make http request for with in a constructor(should not cause side effects)
+      =>We should not make http request  with in a constructor(should not cause side effects)
       =>super(props) should be used when building our own constructor, otherwise this.props won't work
-      =>Only in constructor we can directly call this.state to overwrite the state, in all other cases it should be this.setstate.
+      =>Only in constructor we can directly call this.state to overwrite the state in all other cases it should use this.setstate.
       
 * static getDerivedFormProps(props, state) - Rarely used lifecycle method, this method are used when the state of the component dependson the changes in props over time.
 	=> since this method is static method, we cannot use "this" keyword in this method, so you have to just return an object which represent a new state of a component.
 	=>Should not call http request in this method as well.(should not cause side effects)
 	
-* Render() - Only required methiod in the class component.
+* Render() - Only required method in the class component.
 	=> its function is to read props and state and return jsx which is rendered on the UI 
 	=> should not change state or interact with DOM or make ajax calls from this method.(should not cause side effects)
 	=> Right after the parent render method, the children components lifecycle methods are also executed.
@@ -458,14 +458,14 @@ Mounting Lifecycle Methods(refer to LifecycleA.js)
 		=>Invoked immediately after a component and all its children components have been rendered to the DOM 
 		=> Cause side effects - interact with the DOM or perform  any ajax calls to load data.
 		
-* just console_log all the methods to see how it flow goes, as Done in LifecycleA file.
+* just console_log all the methods to see how the flow goes, as Done in LifecycleA file.
 * When we have the child component, parent component's first three methods renders first(Constructor, Static getDerivedFormProps and Render method) after that, the child components all four methods gets executed and finally parent component's componentDidMount gets executed. 
 
 
 
 
 Updating Lifecycle Methods()(refer LifecycleA.js and LifecycleB.js files)
-* There are 5 methodsm, in which 3 are rarely used.
+* There are 5 methods, in which 3 are rarely used.
 
 * static getDerivedStateFromProps(props, state) -
 		=> Method is called everytime a component is re rendered
@@ -566,8 +566,106 @@ Memo(refer Memocomponent.js and Parentcomponent.js)
 => Pure components only work with class components, the same thing can be achieved in functional components as well and that's where "memo" comes into picture.
 => Just write function component and in the end at "default export" export the component with React.memo(Memocomponent) to use memo.
 
-		  	 
-		  	
+
+
+LifeCycle Methods
+
+* https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
+
+
+
+Styling Library - Material UI Library
+
+* Run command = npm install @material-ui/core to install Material UI for your application
+* npm install @material-ui/icons to use icon from MUI library
+* npm install @material-ui/Roboto-font for using different fonts
+
+=>You should import everything for using it on your component form @material-ui/core
+
+
+=>Button - first import button from @material-ui/core/Button 
+	* it takes 3 attrs startIcon, variant, color
+	* <Button startIcon = {<SaveIcon />} variant="contained" color="primary">	
+	
+=>TextField - varient, color, type
+	<TextField variant = "outlined" color="secondary" type="Date"/>	
+	
+=><ButtonStyled/> => import { makeStyles } from '@material-ui/core/styles';
+		  => put const variable and use makestyle to define different styles in it
+		  => make use of it in a <button className= {classes.root}> 
+
+=>Checkbox = import Checkbox = 
+	* import Checkbox from '@material-ui/core/Checkbox'
+	* import FormControlLabel from '@material-ui/core/FormControlLabel'
+	* Write a function for it to toggle to and fro 
+	* function Checkboxexample() {
+    const [checked, setchecked] = React.useState(true)
+    return (
+        <FormControlLabel
+        control = {<Checkbox 
+            checked = {checked}
+            onChange={(e) => setchecked(e.target.checked)} />}
+        label="testing check box "
+        />
+          
+      
+    )
+}
+  
+=>ThemeProvider = To override the existing properties 
+		=> override the existing colors with different colors
+		
+=>Typography = to write texts with diff properties
+		=> variant = h1-h6, subtitle
+		
+=>container = import Container from '@material-ui/core/Container'
+		attrs => maxwidth = "sm"
+		
+=>Grid => import Paper from '@material-ui/core/Paper'
+	  import Grid from '@material-ui/core/Grid'
+	use paper to show the grids 
+	attrs = container spacing={1-10}, justify = "center"
+	<Grid item xs={3} sm={6}>
+	
+=>Appbar =>
+
+Refer 
+
+
+
+
+
+React Router DOM
+
+* npm install react-router-dom
+* What routing implies should be self explanatory. When we go from one section to another or when you click a link that is supposed to show you some different content, our browser loads a different view. You might say that routing is pretty simple, just include the path to different HTML pages inside the href attribute however single page applications don’t work this way. They don’t load a completely different HTML rather just load a different view that corresponds to that particular route. To implement this in react we’d first have to install the React Router package.
+* First we need to import certain components from the Router Module. The first one is BrowserRouter which tells React that everything that goes inside this tag will give you some information about routing. The next thing we want is Switch which will ensure that you can go to only one route at a time. Finally we want the Route Component which will tell the App Component to render a certain component on visiting a certain URL.
+
+* npm install axios
+
+* https://medium.com/swlh/exploring-react-part-1-a6e9368c9d81
+* https://medium.com/swlh/exploring-react-higher-order-components-and-redux-5a683188aec8
+
+
+
+
+React Higher Order Components
+* Imagine the scenario where you are using same code or logic in different components, it is waste of time to duplicate everything again and again right?.. , the solution we can imagine is write a functionality in parent component and define state and handler in child components. This works fine if you are using next consicutive child to define state and handler, but what happens when theu are scattered,  at this point higher order component comes into picture.(refer clickcounter and HoverCounter.js commented section)
+* Higher Order Component(HOC) - a pattern where a function takes a component as an argument and returns a new component
+	Structure =>  	const NewComponent = higherOrderCompoenent( original component )
+* Takes original component adds functionality through higherordercomponent and produces the new enhanced component.(refer withCounter.js, clickCounter.js and HoverCounter.js)
+
+
+
+React and Django Integration todo application
+* https://www.digitalocean.com/community/tutorials/build-a-to-do-application-using-django-and-react
+
+
+
+	
+		
+
+
 		  	
 		  	
 		

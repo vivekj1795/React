@@ -1,0 +1,12 @@
+Build a project management application with react, (Something like Github issues)
+
+* Use forms in react to take the input from the user,  and create tasks where we can assign the user, time_line and type_of_task attributes 
+* Make use of both class and Functional component.
+* Make use of props and states in components.
+* make use of React Hooks. 
+* Make use of Fire_base data base(Refer: https://www.educative.io/edpresso/firebase-as-simple-database-to-react-app?affiliate_id=5082902844932096&utm_source=google&utm_medium=cpc&utm_campaign=platform2&utm_content=ad-1-dynamic&gclid=CjwKCAiA_Kz-BRAJEiwAhJNY76C90IE9XB_CgBL-EHYyZe4TLev7YrHB-9TlB__VtWw1MmJ4cfWjgxoC3YEQAvD_BwE)
+* Use External Styling Libraries to display individual tasks.
+* Create a seperate page for displaying latest coding news from HackerNews api(https://github.com/HackerNews/API) or any other api you are comfortable with .
+* Make Ajax call to the appropriate API using Axios library.
+* Use React Router DOM, to route two different pages one for taking tasks and displaying it, and other for displaying news through API.
+
