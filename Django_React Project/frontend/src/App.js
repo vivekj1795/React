@@ -34,6 +34,7 @@
      }
      return this.setState({ viewCompleted: false });
    };
+
    renderTabList = () => {
      return (
        <div className="my-5 tab-list">
@@ -52,6 +53,7 @@
        </div>
      );
    };
+   
    renderItems = () => {
      const { viewCompleted } = this.state;
      const newItems = this.state.todoList.filter(
@@ -91,6 +93,7 @@
    toggle = () => {
      this.setState({ modal: !this.state.modal });
    };
+
    handleSubmit = item => {
      this.toggle();
      if (item.id) {
@@ -103,6 +106,7 @@
        .post("http://localhost:8000/api/todos/", item)
        .then(res => this.refreshList());
    };
+
    handleDelete = item => {
      axios
        .delete(`http://localhost:8000/api/todos/${item.id}`)
@@ -112,9 +116,11 @@
      const item = { title: "", description: "", completed: false };
      this.setState({ activeItem: item, modal: !this.state.modal });
    };
+
    editItem = item => {
      this.setState({ activeItem: item, modal: !this.state.modal });
    };
+
    render() {
      return (
        <main className="content">

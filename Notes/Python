@@ -1,0 +1,47 @@
+Source ~/Anaconda3/Bin/Activate Root = run this before runnng anaconda
+
+ps aux | grep [a]pt = if get an error lock while running anything run this and go ahead
+
+sudo rm -r .git= To delete .git from the directory
+
+$ git remote add origin https://github.com/user/repo.git = to push code to new repository
+
+gedit /home/vivek/.bashrc = anaconda bash error path
+
+source /home/vivek/.bashrc = anakonda bash error path
+
+lsb_release -a = to check the version of ubuntu
+
+sudo chmod 666 /var/run/docker.sock = if you get an error in docker files
+
+sudo apt-get build-dep python-psycopg2 = Psycopge problem in byte crm ,running outside environment
+
+pip install psycopg2-binary = psycopge problem , running inside shell environment 
+
+https://linuxize.com/post/how-to-install-visual-studio-code-on-ubuntu-18-04/ = Link to install vs code for ubuntu 
+
+https://askubuntu.com/questions/320996/how-to-make-python-program-command-execute-python-3/321000 = link to refer convert python3 to python in command line 
+
+https://windowsreport.com/fix-dual-boot-windows-10-ubuntu/ = To fix ubuntu not booting directly roblem that is grub not appearing
+
+python3 -m pytest test_solution.py = When pytest is imported from python2 and when you need to import it from python 3
+
+To change usage of python3 on cmd line to python = 
+[[[ 
+A simple safe way would be to use an alias. Place this into ~/.bashrc file: if you have gedit editor use
+gedit ~/.bashrc
+to go into the bashrc file and then at the top of the bashrc file make the following change.
+alias python=python3
+After adding the above in the file. run the below command
+source ~/.bash_aliases or source ~/.bashrc
+]]]
+
+
+sudo apt autoremove pipenv - remove pipenv from ubuntu and installing it from python pip
+
+pipenv run pip freeze > requirements.txt - To create requirement.txt from pipfile
+
+
+
+
+ 

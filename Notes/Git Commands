@@ -1,0 +1,51 @@
+git checkout -b <new-branch> - Create and checkout to the branch 
+git checkout <branchname> - switch to another branch 
+git fetch --all - Before switching into branch , we have to fetch everything first
+git push -u origin <branchname> - pushing to branching after switching into it
+git branch -m <new branchname> - Changing the branch name
+git clone -b <branch> <remote_repo> - to clone from a branch from a repo (Ex :git clone -b dev https://github.com/username/project.git)
+
+
+Error - The “fatal: refusing to merge unrelated histories” Git error
+problem  - The “fatal: refusing to merge unrelated histories” Git error occurs when two unrelated projects are merged (i.e., projects that are not aware of each other’s existence and have mismatching commit histories).
+Solution - The error is resolved by toggling the allow-unrelated-histories switch. After a git pull or git merge command, add the following   "git pull origin master --allow-unrelated-histories"
+
+
+Personal Access token - 6313acc1847902e7d680c7a567184e0c7606734a
+
+git diff <branchname>- The <banchname> you want to merge to your current branch
+git merge <branchname> - The <banchname> you want to merge to your current branch
+git branch -d <branchname> - to delete the branch once its been merged
+git commit -am "" - adds and commits at the same time, but works only for modified files not the newly created file.
+
+git reset  - to remove things from staging area after add command before push.
+git HEAD~1 - To go one commit back, meaning the last commit made will be removed.
+
+git log - gives log of all the commit
+git reset <commitname> - it will erase the commit record after this commit, though there are no changes on code are made.It will unstage changes from git all the changes made after that commit  
+git reset --hard <commitname> - It will erase all the commits and changes to code after this commit.
+git branch -a = lists all the branches in local and remote
+
+
+# ignore a single file
+mycode.class
+
+# ignore an entire directory
+/mydebugdir/
+
+# ignore a file type
+*.json
+
+# add an exception (using !) to the preceding rule to track a specific file
+!package.json
+
+gitignore
+https://docs.microsoft.com/en-us/azure/devops/repos/git/ignore-files?view=azure-devops&tabs=visual-studio
+
+https://www.atlassian.com/git/tutorials/saving-changes/gitignore#:~:text=If%20you%20want%20to%20ignore,directory%20as%20an%20ignored%20file.
+
+- https://www.youtube.com/watch?v=1ffBJ4sVUb4 (this link expalins the internal working of GIT)
+- https://rachelcarmena.github.io/2018/12/12/how-to-teach-git.html  (explained using diagrams)
+- https://youtu.be/HVsySz-h9r4
+
+

@@ -1,0 +1,13 @@
+npm install -g @vue/cli - to install vue cli
+vue create my-project - to create new project 
+vue config - if creating project is very slow , do this and go in there and change it false 
+npm run serve - to run the server 
+
+error: trailing spaces not allowed in vue js
+solution: I think its a vscode issue. Try the following:
+In vscode go to settings ( ctrl+, )
+In settings search bar type "trim trailing whitespace"
+Underneath check "trim trailing whitespace" option.
+Restart vscode
+
+

@@ -1,0 +1,130 @@
+- https://www.javatpoint.com/what-are-the-uses-of-javascript
+
+
+Variables
+
+Diff B/w Var and let 
+
+The reasons are somewhat historical. Back when JavaScript was first created, there was only var. This works basically fine in most cases, but it has some issues in the way it works — its design can sometimes be confusing or downright annoying. So, let was created in modern versions of JavaScript, a new keyword for creating variables that works somewhat differently to var, fixing its issues in the process.
+
+myName = 'Chris';
+
+function logName() {
+  console.log(myName);
+}
+
+logName();
+
+var myName
+
+* This works because of hoisting — read var hoisting for more detail on the subject. Hoisting no longer works with let. If we changed var to let in the above example, it would fail with an error. This is a good thing — declaring a variable after you initialize it results in confusing, harder to understand code.
+
+* Secondly, when you use var, you can declare the same variable as many times as you like, but with let you can't. The following would work:
+			var myName = 'Chris';
+			var myName = 'Bob';
+	But the following would throw an error on the second line:
+			let myName = 'Chris';
+			let myName = 'Bob';
+	You'd have to do this instead:
+			let myName = 'Chris';
+			myName = 'Bob';
+	Again, this is a sensible language decision. There is no reason to redeclare variables — it just makes things more confusing.
+For these reasons and more, we recommend that you use let as much as possible in your code, rather than var. There is no reason to use var, unless you need to support old versions of Internet Explorer with your code (it doesn't support let until version 11; the modern Microsoft Edge browser supports let just fine).
+
+
+							--x--x--x--x--x--x--x--x--x--x--x--
+							
+
+variable naming rules
+
+You can call a variable pretty much anything you like, but there are limitations. Generally, you should stick to just using Latin characters (0-9, a-z, A-Z) and the underscore character.
+
+You shouldn't use other characters because they may cause errors or be hard to understand for an international audience.
+Don't use underscores at the start of variable names — this is used in certain JavaScript constructs to mean specific things, so may get confusing.
+Don't use numbers at the start of variables. This isn't allowed and causes an error.
+A safe convention to stick to is so-called "lower camel case", where you stick together multiple words, using lower case for the whole first word and then capitalize subsequent words. We've been using this for our variable names in the article so far.
+Make variable names intuitive, so they describe the data they contain. Don't just use single letters/numbers, or big long phrases.
+Variables are case sensitive — so myage is a different variable from myAge.
+One last point: you also need to avoid using JavaScript reserved words as your variable names — by this, we mean the words that make up the actual syntax of JavaScript! So, you can't use words like var, function, let, and for as variable names. Browsers recognize them as different code items, and so you'll get errors.
+
+						-x--x--x--x--x--x--x--x--x-
+
+
+http://dolszewski.com/javascript/javascript-runtime-environment/
+https://dev.to/pestrinmarco/typeof-array-is-an-object-in-javascript-1p6k#:~:text=Apparently%20there%20seems%20to%20be,Included%20functions%20and%20array.
+
+
+// Link : https://codeburst.io/difference-between-var-let-and-const-in-javascript-fbce2fba7b4
+
+* While JavaScript doesn’t natively include a type called “Dictionary”,
+ it does contain a very flexible type called “Object”.
+The JavaScript “Object” type is very versatile since JavaScript is a 
+dynamically typed language. 
+This flexibility allows for the “Object” type to be used in ways that might
+seem strange when compared to statically typed languages such as C#.
+
+python dictionaries vs js objects:
+https://stackoverflow.com/questions/20987485/what-are-the-differences-between-python-dictionaries-vs-javascript-objects*/
+
+
+// == vs ===   
+// == will not check for datatype '1' == 1  #true
+// in most cases you want to use ===
+
+// Ternary operator [?] means then
+/*The conditional (ternary) operator is the only JavaScript operator that
+takes three operands: a condition followed by a question mark (?), then
+an expression to execute if the condition is truthy followed by a colon(:),
+and finally the expression to execute if the condition is falsy.
+This operator is frequently used as a shortcut for the if statement.*/
+
+
+//swtich
+/*The switch statement is used to perform different actions based on
+different conditions.
+
+This is how it works:
+
+The switch expression is evaluated once.
+The value of the expression is compared with the values of each case.
+If there is a match, the associated block of code is executed.
+
+Switch cases use strict comparison (===).
+The values must be of the same type to match.
+
+The default keyword specifies the code to run if there is no case match
+
+						--x--x--x--x--x--x--x--x--x--x--x-
+					
+https://alligator.io/js/foreach-vs-for-loops/#:~:text=forEach%20is%20easier%20to%20read&text=In%20a%20forEach%20method%2C%20we,begin%20to%20add%20more%20code.
+
+
+						--x--x--x--x--x--x--x--x--x--x--x--x-
+			
+What is the difference between async:false and async:true in jquery ajax?
+
+You set async to false, when you need that ajax request to be completed before the browser passes to other codes:
+	
+By default, the$.ajax
+request in jQuery is set to asynchronous. The variable name is async and the value is set to true. This gave me a little confusion as well when first learning about it, so let’s go over it.
+
+Synchronous ( async: false ) – Script stops and waits for the server to send back a reply before continuing. There are some situations where Synchronous Ajax is mandatory.
+
+In standard Web applications, the interaction between the customer and the server is synchronous. This means that one has to happen after the other. If a customer clicks a link, the request is sent to the server, which then sends the results back.
+
+Because of the danger of a request getting lost and hanging the browser, synchronous javascript isn’t recommended for anything outside of (onbefore)unload event handlers, but if you need to hear back from the server before you can allow the user to navigate away from the page, synchronous Javascript isn’t just your best option.
+
+Asynchronous ( async: true ) – Where the script allows the page to continue to be processed and will handle the reply if and when it arrives. If anything goes wrong in the request and/or transfer of the file, your program still has the ability to recognize the problem and recover from it. Processing asynchronously avoids the delay while the retrieval from the server is taking place because your visitor can continue to interact with the web page and the requested information will be processed with the response updating the page as and when it arrives.
+
+
+						--x--x--x--x--x--x--x--x--x--x--x--x--x--
+						
+Scroll y = The read-only scrollY property of the Window interface returns the number of pixels that the document is currently scrolled vertically
+
+HTML DOM offsetHeight Property - Get the height and width of a <div> element, including padding and border:
+var elmnt = document.getElementById("myDIV");
+var txt = "Height with padding and border: " + elmnt.offsetHeight + "px<br>";
+txt += "Width with padding and border: " + elmnt.offsetWidth + "px";
+
+
+

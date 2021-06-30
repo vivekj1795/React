@@ -1,8 +1,8 @@
-/* .app {
+.app {
   background: #209cee;
   height: 100vh;
   padding: 30px;
-} */
+}
 
 .todo-list {
   background: #e8e8e8;
@@ -21,8 +21,4 @@
   justify-content: space-between;
   margin-bottom: 6px;
   padding: 3px 10px;
-}
-
-.After-Nav{
-  margin-top:80px;
 }

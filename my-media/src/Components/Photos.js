@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function Photos(){
-return(
-  <div className="container">
-     <h1 className="center">
-     Inside the Photos section
-     </h1>
-  </div>
- )
+function Photos() {
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
 }
 
-export default Photos;
+export default Photos

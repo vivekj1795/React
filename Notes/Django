@@ -1,0 +1,267 @@
+Django Projects
+https://www.youtube.com/watch?v=qDwdMDQ8oX4&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=3
+https://medium.com/@whizzoe/in-5-mins-set-up-google-login-to-sign-up-users-on-django-e71d5c38f5d5
+https://djangocentral.com/building-a-blog-application-with-django/
+https://www.skysilk.com/blog/2017/how-to-make-a-blog-with-django/
+https://www.upgrad.com/blog/django-project-ideas-topics-beginners/
+https://www.youtube.com/watch?v=vXXfXRf2S4M
+https://www.techgeekbuzz.com/django-projects/
+
+Django
+It is a high-level framework
+Free and open source
+Encourages rapid development
+Follows MTV design pattern 
+Follow the set of procedures
+Very Secure
+Pinterest, Instagram, Nasa, etc
+MTV(model template view)
+Model: Data access layer, Anything to do with interacting, relating, and validating the data
+Template:presentation layer : presentation related decisions
+View:Business logic layer,Access the appropriate model and display the appropriate template
+ 
+Django's primary goal is to ease the creation of complex, database-driven websites. The framework emphasizes reusability and "pluggability" of components, less code, low coupling, rapid development, and the principle of don't repeat yourself.
+Python is used throughout, even for settings files and data models. Django also provides an optional administrative create, read, update and delete interface that is generated dynamically through introspection and configured via admin models.
+ 
+Each project can have many apps
+ 
+The outer mysite/ root directory is just a container for your project. Its name doesn’t matter to Django; you can rename it to anything you like.
+Django-admin is Django’s command-line utility for administrative tasks. The Admin interface of a website is the control panel of your website/ project. It is used by the administrators of the website to add, delete and edit the content on the site, and also maintain other functionalities accordingly made by the developers.
+manage.py: A command-line utility that lets you interact with this Django project in various ways
+In addition, manage.py is automatically created in each Django project. It does the same thing as Django-admin but also sets the DJANGO_SETTINGS_MODULE environment variable so that it points to your project’s settings.py file.
+
+
+The inner my site/ directory is the actual Python package for your project. Its name is the Python package name you’ll need to use to import anything inside it (e.g. my site.URLs).
+
+
+mysite/__init__.py: An empty file that tells Python that this directory should be considered a Python package
+
+
+mysite/settings.py: Settings/configuration for this Django project. A Django settings file contains all the configuration of your Django installation
+
+
+mysite/urls.py: The URL declarations for this Django project;
+
+
+mysite/wsgi.py: An entry-point for WSGI-compatible web servers to serve your project. 
+
+Link - https://www.fullstackpython.com/wsgi-servers.html
+
+
+							x--x--x--x--x--x--x--x--x--x
+Customizing Authentication In Django
+
+
+Option 1: Using a Proxy Model
+What is a Proxy Model?
+It is a model inheritance without creating a new table in the database. It is used to change the behaviour of an existing model (e.g. default ordering, add new methods, etc.) without affecting the existing database schema.
+When should I use a Proxy Model?
+You should use a Proxy Model to extend the existing User model when you don’t need to store extra information in the database, but simply add extra methods or change the model’s query Manager.
+ 
+Option 2: Using One-To-One Link With a User Model (Profile)
+What is a One-To-One Link?
+It is a regular Django model that’s gonna have it’s own database table and will hold a One-To-One relationship with the existing User Model through a OneToOneField.
+When should I use a One-To-One Link?
+You should use a One-To-One Link when you need to store extra information about the existing User Model that’s not related to the authentication process. We usually call it a User Profile.
+That’s what I need! Take me to the instructions
+
+ 
+Option 3: Creating a Custom User Model Extending AbstractBaseUser
+What is a Custom User Model Extending AbstractBaseUser?
+It is an entirely new User model that inherit from AbstractBaseUser. It requires a special care and to update some references through the settings.py. Ideally it should be done in the begining of the project, since it will dramatically impact the database schema. Extra care while implementing it.
+When should I use a Custom User Model Extending AbstractBaseUser?
+You should use a Custom User Model when your application have specific requirements in relation to the authentication process. For example, in some cases it makes more sense to use an email address as your identification token instead of a username.
+ 
+Option 4: Creating a Custom User Model Extending AbstractUser
+What is a Custom User Model Extending AbstractUser?
+It is a new User model that inherit from AbstractUser. It requires a special care and to update some references through the settings.py. Ideally it should be done in the begining of the project, since it will dramatically impact the database schema. Extra care while implementing it.
+
+When should I use a Custom User Model Extending AbstractUser?
+You should use it when you are perfectly happy with how Django handles the authentication process and you wouldn’t change anything on it. Yet, you want to add some extra information directly in the User model, without having to create an extra class (like in the Option 2).
+
+
+
+
+						       --x--x--x--x--x--x--x
+
+Custom Users And The Built-In Auth Forms¶
+
+Django’s built-in forms and views make certain assumptions about the user model that they are working with.
+
+The following forms are compatible with any subclass of AbstractBaseUser:
+
+AuthenticationForm: Uses the username field specified by USERNAME_FIELD.
+SetPasswordForm
+PasswordChangeForm
+AdminPasswordChangeForm
+The following forms make assumptions about the user model and can be used as-is if those assumptions are met:
+PasswordResetForm: Assumes that the user model has a field that stores the user’s email address with the name returned by get_email_field_name() (email by default) that can be used to identify the user and a boolean field named is_active to prevent password resets for inactive users.
+Finally, the following forms are tied to User and need to be rewritten or extended to work with a custom user model:
+
+UserCreationForm
+UserChangeForm
+
+						       --x--x--x--x--x--x--x
+
+
+==> What is the difference between null=True and blank=True in Django?
+
+null=True sets NULL (versus NOT NULL) on the column in your DB. Blank values for Django field types such as DateTimeField or ForeignKey will be stored as NULL in the DB.
+
+blank determines whether the field will be required in forms. This includes the admin and your custom forms. If blank=True then the field will not be required, whereas if it's False the field cannot be blank.
+
+The combo of the two is so frequent because typically if you're going to allow a field to be blank in your form, you're going to also need your database to allow NULL values for that field. The exception is CharFields and TextFields, which in Django are never saved as NULL. Blank values are stored in the DB as an empty string ('').
+
+A few examples:
+
+
+models.DateTimeField(blank=True) # raises IntegrityError if blank
+
+models.DateTimeField(null=True) # NULL allowed, but must be filled out in a form
+Obviously, Those two options don't make logical sense to use (though there might be a use case for null=True, blank=False if you want a field to always be required in forms, optional when dealing with an object through something like the shell.)
+
+
+models.CharField(blank=True) # No problem, blank is stored as ''
+
+models.CharField(null=True) # NULL allowed, but will never be set as NULL
+CHAR and TEXT types are never saved as NULL by Django, so null=True is unnecessary. However, you can manually set one of these fields to None to force set it as NULL. If you have a scenario where that might be necessary, you should still include null=True.
+
+
+							--x--x--x--x--x--x--x--
+
+UniqueConstraint
+
+Syntax - class UniqueConstraint(*, fields, name, condition=None, deferrable=None)¶ - Creates a unique constraint in the database.
+
+fields
+UniqueConstraint.fields
+A list of field names that specifies the unique set of columns you want the constraint to enforce.
+
+For example,
+UniqueConstraint(fields=['room', 'date'], name='unique_booking') ensures each room can only be booked once for each date.
+
+name
+UniqueConstraint.name
+The name of the constraint. You must always specify a unique name for the constraint.
+
+condition
+UniqueConstraint.condition
+A Q object that specifies the condition you want the constraint to enforce.
+
+							--x--x--x--x--x--x--x--
+							
+
+The admin interface appears to use __str__() to determine the display of a model. I make it a habbit to always define both __unicode__() and __str__() when I create a model. For example:
+
+						      --x--x--x--x--x--x--x--x
+						      
+A ManyToManyField is not stored as a column in a relational database. A many-to-many relation is defined as a table. Indeed, a table with two ForeignKeys, one to the "source" model (so Marks), and one to the "target" model (so Subject). This is a standard way to implement this, see for example the Wikipedia article on Many-to-many (data model).
+
+						        --x--x--x--x--x--x--x--
+						     
+When you need to mention __str__to foriegn_field in the model give .field name of the model it is foriegn keyed to for example
+
+class B(models.Model):
+    something=models.CharField(max_length=50)
+
+class A(models.Model):
+    name = models.ForeignKey('B')
+
+    def __str__(self):
+        return self.name.something
+
+						 	--x--x--x--x--x--x--x--x--	
+							
+Meta inner class in Django models:
+
+This is just a class container with some options (metadata) attached to the model. It defines such things as available permissions, associated database table name, whether the model is abstract or not, singular and plural versions of the name etc.
+
+Short explanation is here: Django docs: Models: Meta options
+
+List of available meta options is here: Django docs: Model Meta options
+
+For latest version of Django: Django docs: Model Meta options
+
+Metaclass in Python:
+
+The best description is here: What are metaclasses in Python?
+
+							--x--x--x--x--x--x--x--x--x--
+							
+Django Rest Frameworks
+def get_queryset(self):
+        print("In get_queryset of NestingPlanFacilitiesViewSet")
+
+        stu_id = self.request.query_params.get("student_id", None)
+        print("stu_id", stu_id)
+
+        try:
+            if stu_id is not None:
+                student_list = StudentCoursesDetails.objects.filter(studentID=stu_id)
+                print(student_list.values())
+                # for i in student_list:
+                print(student_list[0].studentcourseID)
+              
+* Use get_queryset method in modelViewset, when you need to modify the get functionality based on some nested values of depth upto 2.
+* Use self.request.query_params.get("student_id", None) to get the params passed inside url.
+* Use StudentCoursesDetails.objects.filter(studentID=stu_id) to filter the queryset based on the given parameter for any model.
+* Use student_list.values() to get values inside the queryset.
+* Use print(student_list[0].studentcourseID) to get specific value from the queryset.
+
+
+						--x--x--x--x--x--x--x--x--x--x--x--x--
+						
+Django REST framework isn't required, but it helps you get a lot of things right that will be time consuming and error prone if you're working from core Django.
+
+Serializers
+
+The Django serializers are not really suitable for anything other than dumping and loading fixture data - they don't allow you to customize the representation in any substantial way.
+
+Using Django Forms for validation isn't suitable either as they're intended for HTML only validation and can't eg handle nested validation.
+
+REST frameworks serializers are designed for API usage and cover both JSON or form validation, as well as being able to represent as either HTML Forms or formats such as JSON. They also give you lots of scope for handling the representation of relationships, such as using hyperlinked relations.
+
+Authentication and permissions
+
+REST framework's authentication will gracefully handle both session based and token based schemes at the same time, and get the CSRF behavior right. You'll find that really awkward to do if using plain Django. It also helps ensure you're issuing failure responses that are suitable for API clients (eg get 401 vs 403 responses right)
+
+
+						--x--x--x--x--x--x--x--x--x--x--x--x--
+						
+Rendering HTML
+In order to return HTML responses you'll need to use either TemplateHTMLRenderer, or StaticHTMLRenderer.
+
+The TemplateHTMLRenderer class expects the response to contain a dictionary of context data, and renders an HTML page based on a template that must be specified either in the view or on the response.
+
+The StaticHTMLRender class expects the response to contain a string of the pre-rendered HTML content.
+
+Because static HTML pages typically have different behavior from API responses you'll probably need to write any HTML views explicitly, rather than relying on the built-in generic views.
+
+Here's an example of a view that returns a list of "Profile" instances, rendered in an HTML template:
+
+from my_project.example.models import Profile
+from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+
+class ProfileList(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'profile_list.html'
+
+    def get(self, request):
+        queryset = Profile.objects.all()
+        return Response({'profiles': queryset})
+        
+        
+  					--x--x--x--x--x--x--x--x--x--x--x--x--x--x--x--x--
+  					
+
+
+
+
+
+
+
+
+

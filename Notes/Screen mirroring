@@ -1,0 +1,30 @@
+Sharing Screen
+https://www.osradar.com/how-to-cast-android-screen-in-ubuntu-18-04/
+Prerequisites
+An Android device with at least 5.0 version
+It is necessary to enable ADB debugging. On some devices, it is also necessary to enable USB debugging in the security options. In fact, this function is essential to manage the Android device via USB.
+ADB and Fastboot installed. To download and install it, simply run this command:
+
+sudo apt-get install android-tools-adb android-tools-fastboot
+
+adb version
+
+sudo snap install scrcpy
+
+Once the preparations are done, you just have to connect the phone with the USB cable.
+
+scrcpy
+
+
+
+
+Sharing AUdio
+On Linux and macOS, download sndcpy-v1.0.zip - you'll need to have adb installed on your system (be available in your PATH). On all Linux, Windows and macOS, you'll also need to have VLC installed.
+
+Now extract the sndcpy zip archive, open a terminal, navigate to the folder where you've extracted sndcpy and run it on Linux / macOS:
+
+cd sndcpy-v1.0
+./sndcpy
+
+Debug
+https://www.youtube.com/watch?v=PNQ26OGiiIw 

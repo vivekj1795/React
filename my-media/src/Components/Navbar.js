@@ -12,7 +12,7 @@ const Navbar=(props)=> {
         <nav>
             <div className="nav-wrapper #82b1ff blue accent-1 row">
             <ul className="right hide-on-med-and-down container">
-                <li><NavLink exact={true} to="/">Home</NavLink></li>
+                <li><NavLink exact={true} to="/" activeClassName="selected">Home</NavLink></li>
                 <li><Link to="/posts">Posts</Link></li>
                 <li><Link to="/comments">Comments</Link></li>
                 <li><Link to="/photos">Photos</Link></li>

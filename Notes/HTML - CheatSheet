@@ -1,0 +1,299 @@
+Vector images vs Raster images
+
+https://mdn.github.io/learning-area/html/multimedia-and-embedding/adding-vector-graphics-to-the-web/vector-versus-raster.html
+
+Forms
+This element formally defines a form. It's a container element like a <section> or <footer> element, but specifically for containing forms; it also supports some specific attributes to configure the way the form behaves. All of its attributes are optional, but it's standard practice to always set at least the action and method attributes:
+The action attribute defines the location (URL) where the form's collected data should be sent when it is submitted.
+The method attribute defines which HTTP method to send the data with (usually get or post).
+
+Inline elements
+inline elements are those which only occupy the space bounded by the tags defining the element, 
+instead of breaking the flow of the content.
+Ex: <div>The following span is an <span class="highlight">inline element</span>;
+	its background has been colored to display both the beginning and end of
+	the inline element's influence.</div>
+	
+<a>
+<abbr>
+<acronym>
+<audio> (if it has visible controls)
+<b>
+<bdi>
+<bdo>
+<big>
+<br>
+<button>
+<canvas>
+<cite>
+<code>
+<data>
+<datalist>
+<del>
+<dfn>
+<em>
+<embed>
+<i>
+<iframe>
+<img>
+<input>
+<ins>
+<kbd>
+<label>
+<map>
+<mark>
+<meter>
+<noscript>
+<object>
+<output>
+<picture>
+<progress>
+<q>
+<ruby>
+<s>
+<samp>
+<script>
+<select>
+<slot>
+<small>
+<span>
+<strong>
+<sub>
+<sup>
+<svg>
+<template>
+<textarea>
+<time>
+<u>
+<tt>
+<var>
+<video>
+<wbr>
+
+
+Block Level Element
+A Block-level element occupies the entire horizontal space of its parent element (container), and vertical space equal to the height of its contents, thereby creating a "block".
+
+Ex:<div>The following paragraph is a <p class="highlight">block-level element;</p>
+	its background has been colored to display both the beginning and end of
+	the block-level element's influence.</div>
+	
+<address>
+Contact information.
+<article>
+Article content.
+<aside>
+Aside content.
+<blockquote>
+Long ("block") quotation.
+<details>
+Disclosure widget.
+<dialog>
+Dialog box.
+<dd>
+Describes a term in a description list.
+<div>
+Document division.
+<dl>
+Description list.
+<dt>
+Description list term.
+<fieldset>
+Field set label.
+<figcaption>
+Figure caption.
+<figure>
+Groups media content with a caption (see <figcaption>).
+<footer>
+Section or page footer.
+<form>
+Input form.
+<h1>, <h2>, <h3>, <h4>, <h5>, <h6>
+Heading levels 1-6.
+<header>
+Section or page header.
+<hgroup>
+Groups header information.
+<hr>
+Horizontal rule (dividing line).
+<li>
+List item.
+<main>
+Contains the central content unique to this document.
+<nav>
+Contains navigation links.
+<ol>
+Ordered list.
+<p>
+Paragraph.
+<pre>
+Preformatted text.
+<section>
+Section of a web page.
+<table>
+Table.
+<ul>
+Unordered list.
+
+
+https://www.theblogstarter.com/html-for-beginners/
+
+					               -x-x-x-x-x-x-x-x-x-x-x-x-x-
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section
+
+Section <tag>
+
+The HTML <section> element represents a generic standalone section of a document, which doesn't have a more specific semantic element to represent it. Sections should always have a heading, with very few exceptions.
+
+As mentioned above, <section> is a generic sectioning element, and should only be used if there isn't a more specific element to represent it. As an example, a navigation menu should be wrapped in a <nav> element, but a list of search results or a map display and its controls don't have specific elements, and could be put inside a <section>.
+
+Also consider these cases:
+
+* If the contents of the element represent a standalone, atomic unit of content that makes sense syndicated as a standalone piece (e.g. a blog post or blog comment, or a newspaper article), the <article> element would be a better choice.
+* If the contents represent useful tangential information that works alongside the main content, but is not directly part of it (like related links, or an author bio), use an <aside>.
+* If the contents represent the main content area of a document, use <main>.
+* If you are only using the element as a styling wrapper, use a <div>. A rule of thumb is that a <section> should logically appear in the outline of a document.
+
+							-x-x-x-x-x-x-x-x-x-x-x-x-x-
+							
+Article <tag>
+
+The HTML <article> element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., in syndication). Examples include: a forum post, a magazine or newspaper article, or a blog entry, a product card, a user-submitted comment, an interactive widget or gadget, or any other independent item of content.
+
+A given document can have multiple articles in it; for example, on a blog that shows the text of each article one after another as the reader scrolls, each post would be contained in an <article> element, possibly with one or more <section>s within.
+
+* Each <article> should be identified, typically by including a heading (<h1>-<h6> element) as a child of the <article> element.
+* When an <article> element is nested, the inner element represents an article related to the outer element. For example, the comments of a blog post can be <article> elements nested in the <article> representing the blog post.
+* Author information of an <article> element can be provided through the <address> element, but it doesn't apply to nested <article> elements.
+* The publication date and time of an <article> element can be described using the datetime attribute of a <time> element. Note that the pubdate attribute of <time> is no longer a part of the W3C HTML5 standard.
+
+							-x-x-x-x-x-x-x-x-x-x-x-x-x-
+
+The Content Division element - <div>
+
+The HTML Content Division element (<div>) is the generic container for flow content. It has no effect on the content or layout until styled in some way using CSS (e.g. styling is directly applied to it, or some kind of layout model like Flexbox is applied to its parent element).
+
+As a "pure" container, the <div> element does not inherently represent anything. Instead, it's used to group content so it can be easily styled using the class or id attributes, marking a section of a document as being written in a different language (using the lang attribute), and so on.
+
+The <div> element should be used only when no other semantic element (such as <article> or <nav>) is appropriate.
+
+					               -x-x-x-x-x-x-x-x-x-x-x-x-x-
+
+
+
+
+HTML Tags
+
+1. <!DOCTYPE> - The declaration is not an HTML tag. It is an "information" to the browser about what document type to expect.
+2. <a> - The <a> tag defines a hyperlink, which is used to link from one page to another.The most important attribute of the <a> element is 	the href attribute, which indicates the link's destination.
+3. <abbr> - The <abbr> tag defines an abbreviation or an acronym, like "HTML", "CSS", "Mr.", "Dr.", "ASAP", "ATM".
+4. <acronym> - The <address> tag defines the contact information for the author/owner of a document or an article.
+5. <area> - The <area> tag defines an area inside an image map (an image map is an image with clickable areas).<area> elements are always 		nested inside a <map> tag.
+6. <article> - An article should make sense on its own and it should be possible to distribute it independently from the rest of the site.
+7. <aside> - The <aside> tag defines some content aside from the content it is placed in.
+8. <audio> - The <audio> tag is used to embed sound content in a document, such as music or other audio streams.
+9. <b>     -  The <b> tag specifies bold text without any extra importance.
+10. <base> - The <base> tag specifies the base URL and/or target for all relative URLs in a document.
+11. <bdo> - The <bdo> tag is used to override the current text direction.
+12. <blockquote>  - The <blockquote> tag specifies a section that is quoted from another source.
+13. <body> - The <body> tag defines the document's body.
+14. <br> - The <br> tag inserts a single line break.
+15. <button> - The <button> tag defines a clickable button.
+16. <caption>-The <caption> tag must be inserted immediately after the <table> tag.
+17. <cite> - The <cite> tag defines the title of a creative work (e.g. a book, a poem, a song, a movie, a painting, a sculpture, etc.).
+18. <code> - The <code> tag is used to define a piece of computer code.
+19. <col> - The <col> tag specifies column properties for each column within a <colgroup> element.
+20. <colgroup> - The <colgroup> tag specifies a group of one or more columns in a table for formatting.
+21. <datalist> - The <datalist> tag specifies a list of pre-defined options for an <input> element.
+22. <dd> - The <dd> tag is used to describe a term/name in a description list.
+23. <del> - The <del> tag defines text that has been deleted from a document. Browsers will usually strike a line through deleted text.
+24. <details> - The <details> tag specifies additional details that the user can open and close on demand.
+25. <dfn> - The <dfn> tag stands for the "definition element", and it specifies a term that is going to be defined within the content.
+26. <dialog> - The <dialog> tag defines a dialog box or subwindow.
+27. <div> - The <div> tag defines a division or a section in an HTML document.
+28. <em> - The <em> tag is used to define emphasized text. The content inside is typically displayed in italic.
+29. <embed> - The <embed> tag defines a container for an external resource, such as a web page, a picture, a media player, or a plug-in application.
+30. <fieldset> - The <fieldset> tag is used to group related elements in a form.
+31. <figcaption> - The <figcaption> tag defines a caption for a <figure> element.
+32. <figure> - The <figure> tag specifies self-contained content, like illustrations, diagrams, photos, code listings, etc.
+33. <footer> - The <footer> tag defines a footer for a document or section.
+34. <form> - The <form> tag is used to create an HTML form for user input.
+35. <h1>-<h6> - The <h1> to <h6> tags are used to define HTML headings.
+36. <head> - The <head> element is a container for metadata (data about data) and is placed between the <html> tag and the <body> tag
+37. <header> - The <header> element represents a container for introductory content or a set of navigational links.
+38. <hr> - The <hr> tag defines a thematic break in an HTML page (e.g. a shift of topic).
+39. <html> - The <html> tag represents the root of an HTML document.
+40. <i> - The content inside is typically displayed in italic.
+41. <iframe> - An inline frame is used to embed another document within the current HTML document.
+42. <img> - The <img> tag is used to embed an image in an HTML page.
+43. <input> - The <input> tag specifies an input field where the user can enter data. 
+44. <ins> - The <ins> tag defines a text that has been inserted into a document. Browsers will usually underline inserted text.
+45. <kbd> - The <kbd> tag is used to define keyboard input. The content inside is displayed in the browser's default monospace font.
+46. <li> - The <li> tag defines a list item.
+47. <link> - The <link> tag defines the relationship between the current document and an external resource.
+48. <main> - The <main> tag specifies the main content of a document.
+49. <map> - The <map> tag is used to define an image map. An image map is an image with clickable areas.
+50. <mark> - The <mark> tag defines text that should be marked or highlighted.
+51. <meta> - The <meta> tag defines metadata about an HTML document. Metadata is data (information) about data.
+52. <meter> - The <meter> tag defines a scalar measurement within a known range, or a fractional value. This is also known as a gauge.
+53. <nav> - the <nav> tag defines a set of navigation links.
+54. <object> - The <object> tag defines a container for an external resource.
+55. <optgroup> - The <optgroup> tag is used to group related options in a <select> element (drop-down list).
+56. <option> - The <option> tag defines an option in a select list.
+57. <output> - The <output> tag is used to represent the result of a calculation (like one performed by a script).
+58. <p> - The <p> tag defines a paragraph.
+59. <param> - The <param> tag is used to define parameters for an <object> element.
+60. <picture> - The <picture> tag gives web developers more flexibility in specifying image resources.
+61. <pre> - Text in a <pre> element is displayed in a fixed-width font, and the text preserves both spaces and line breaks. The text will 		be displayed exactly as written in the HTML source code.
+62. <progress> - The <progress> tag represents the completion progress of a task.
+63. <q> - The <q> tag defines a short quotation.
+64. <s> - The <s> tag specifies text that is no longer correct, accurate or relevant.
+65. <samp> - The <samp> tag is used to define sample output from a computer program.
+66. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- The action attribute defines the location (URL) where the form's collected data should be sent when it is submitted. -->
+    <!-- The method attribute defines which HTTP method to send the data with (usually get or post). -->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

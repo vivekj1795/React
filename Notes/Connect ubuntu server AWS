@@ -1,0 +1,10 @@
+cd ~/.ssh = for getting into ssh
+https://tecadmin.net/convert-ppk-to-pem-using-command/ = Link for converting ppk file to pem 
+ssh ubuntu@ip
+chmod 400 "file inside ssh path" = To change permissions to the file
+ssh -i randstad_crm_putty.pem ubuntu@server_id = ultimate step to get into ec2 server
+New AWS Credentials:
+email_id: ramesh.b@randstad.in
+password: Byte710#
+http://3.128.196.76.xip.io:8000/
+

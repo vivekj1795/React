@@ -1,26 +1,42 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import Todo from './components/Todo';
 import Todoform from './components/Todoform';
 import Todolist from './components/Todolist';
+import axios from 'axios';
 
 function App() {
-  const [todos, setTodos] = React.useState([
-    {
-      text: "Learn about React",
-      isCompleted: false
-    },
-    {
-      text: "Meet friend for lunch",
-      isCompleted: false
-    },
-    {
-      text: "Build really cool todo app",
-      isCompleted: false
-    }
-  ]);
+  const [todos, setTodos] = React.useState([]);
+  //   {
+  //     text: "Learn about React",
+  //     isCompleted: false
+  //   },
+  //   {
+  //     text: "Meet friend for lunch",
+  //     isCompleted: false
+  //   },
+  //   {
+  //     text: "Build really cool todo app",
+  //     isCompleted: false
+  //   }
+  // ]);
 
-  const addTodo = text => {
+  useEffect(async () => {
+    const result = await axios(
+      'https://jsonplaceholder.typicode.com/todos',
+    );
+    console.log(result.data)
+    let fav=[];
+    result.data.forEach(user=>{
+      fav.push(user);
+      })
+      fav=fav.slice(0,9);
+ 
+    setTodos(fav);
+  },[]);
+ 
+
+  const addTodo = (text) => {
     const newTodos = [...todos, { text }];
     setTodos(newTodos);
   };
@@ -39,8 +55,8 @@ function App() {
 
   return (
     <div className="app">
-      {/* <div className="todo-list"> */}
-        {/* {todos.map((todo, index) => (
+      <div className="todo-list">
+        {todos.map((todo, index) => (
           <Todo
             key={index}
             index={index}
@@ -49,11 +65,9 @@ function App() {
             removeTodo={removeTodo}
           />
         ))}
-        <Todoform addTodo={addTodo} /> */}
-        <Todolist/>
+        <Todoform addTodo={addTodo} />
       </div>
-    
-    // </div>
+    </div>
   );
 }
 

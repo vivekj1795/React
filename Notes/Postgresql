@@ -1,0 +1,6 @@
+Postgres
+
+* Create a Group Role or login role
+* Create new server with same credentials as Group Role created
+* create a new database with appropriate name
+* use the same database name in django app and also use username and password of login role create. 

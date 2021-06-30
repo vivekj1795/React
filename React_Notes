@@ -9,21 +9,71 @@ Other way to create React package
 npm install create-react-app -g
 then just do create-react-app "project name"  
 
+						--x--x--x--x--x--x--x--x--x--x--
+
+React: The Virtual DOM
+Fighting Wasteful DOM Manipulation
+The Problem
+DOM manipulation is the heart of the modern, interactive web. Unfortunately, it is also a lot slower than most JavaScript operations.
+
+This slowness is made worse by the fact that most JavaScript frameworks update the DOM much more than they have to.
+
+As an example, let’s say that you have a list that contains ten items. You check off the first item. Most JavaScript frameworks would rebuild the entire list. That’s ten times more work than necessary! Only one item changed, but the remaining nine get rebuilt exactly how they were before.
+
+Rebuilding a list is no big deal to a web browser, but modern websites can use huge amounts of DOM manipulation. Inefficient updating has become a serious problem.
+
+To address this problem, the people at React popularized something called the virtual DOM.
+
+The Virtual DOM
+In React, for every DOM object, there is a corresponding “virtual DOM object.” A virtual DOM object is a representation of a DOM object, like a lightweight copy.
+
+A virtual DOM object has the same properties as a real DOM object, but it lacks the real thing’s power to directly change what’s on the screen.
+
+Manipulating the DOM is slow. Manipulating the virtual DOM is much faster, because nothing gets drawn onscreen. Think of manipulating the virtual DOM as editing a blueprint, as opposed to moving rooms in an actual house.
+
+How it helps
+When you render a JSX element, every single virtual DOM object gets updated.
+
+This sounds incredibly inefficient, but the cost is insignificant because the virtual DOM can update so quickly.
+
+Once the virtual DOM has updated, then React compares the virtual DOM with a virtual DOM snapshot that was taken right before the update.
+
+By comparing the new virtual DOM with a pre-update version, React figures out exactly which virtual DOM objects have changed. This process is called “diffing.”
+
+Once React knows which virtual DOM objects have changed, then React updates those objects, and only those objects, on the real DOM. In our example from earlier, React would be smart enough to rebuild your one checked-off list-item, and leave the rest of your list alone.
+
+This makes a big difference! React can update only the necessary parts of the DOM. React’s reputation for performance comes largely from this innovation.
+
+In summary, here’s what happens when you try to update the DOM in React:
+
+The entire virtual DOM gets updated.
+The virtual DOM gets compared to what it looked like before you updated it. React figures out which objects have changed.
+The changed objects, and the changed objects only, get updated on the real DOM.
+Changes on the real DOM cause the screen to change.
+If you’d like to learn more about the virtual DOM, here’s a good place to start.
+
+Source - https://www.codecademy.com/articles/react-virtual-dom
+
+
+						--x--x--x--x--x--x--x--x--x---x--x--x--x--
+					
+					
+					
 Folder Structure and Work flow
 
 * Package.json = Contains all the dependencies and scripts required for project 
 * Pacjage-lock.json = to ensure smooth installation of the packages.
-* Folder-node-module = is the folder all the dependecies are installed, generated when npm command is run 
+* Folder-node-module = is the folder all the dependencies are installed, generated when npm command is run 
 * public-folder = 
 	manifest.json = is concerned with progressive web app
 	index.html = It is the only html file you will have in your entire application.The view in the browser may change but this the ultimate page which will render.No changes are made in this file, if needed can change only the header tag, but body tag should not be touched as it is controlled by React.
-	<div id = "root"> we call root DOM node as everything as inside is controlled by React.
+	<div id = "root"> we call root DOM node as everything inside is controlled by React.
 * src-folder = mostly used folder for development
 	index.js=starting point for our application 
 		  in index.js we specify root component which is App component and DOM element which is controlled by react.
 		  DOM element in our example is 
 		  In hello world program App component is rendered inside root DOM node
-	App.js   = contains a app compenent  
+	App.js   = contains a app component  
 		   Represents the view which we see in the browser.
 	App.css = CSS file for styling
 	App.test.js = contains a simple test case
@@ -51,7 +101,7 @@ Stateless Functional Component  and  stateful class component
 * Class components on the other hand regular ES6 classes that extends component class from the react library, they must contain render method which inturn returns HTML.(render() method)
 
 Functional Components(Refer Greet.js)
-* Its just a javascript functions, they can recieve object of propertie-props and return HTML called JSX
+* Its just a javascript functions, they can recieve object of properties-props and return HTML called JSX
 Creating Functional Components
 * Create a Folder called components
 * inside a folder create file Greet 
@@ -67,6 +117,8 @@ Class Components(refer welcome.js)
 * optionally recieve props as input and return HTML 
 * It can maintian some information which is private for that component and use that information to describe the user interface this is called state.
 
+
+
 Function vs Class Components 
 Functions
 * Use Functional components as much as possible
@@ -81,6 +133,7 @@ Class
 * Complex UI logic can be written 
 * provide lyfecycle hooks
 * It is also called statefull/smart/Container
+
 
 JSX(Refer Hello.js)
 Show both way of doing things, using jsx and without using JSX - Refer Hello.js
@@ -112,7 +165,7 @@ Props with function
 
 
 	
-props with Class
+props with Class(refer welcome.js)
 * It is similar to function, but the only difference is, doesn't require to pass props in function argument, instead use this keyword directly {this.props.name}
 class Welcome extends Component {
     render() {
@@ -147,7 +200,7 @@ setState
 * Always make use of setState and never modify the state directly
 * Code has to be executed after the state has been updated?. Place that code in the call back function which is the second argument to the setState method.
 * when you have to update state based on the previous state value, pass in a function as an argument instead of the regular object.
-* when you modify the state directly it wont rerender the component.
+* when you modify the state directly it won't rerender the component.
 * React may group multiple setstate calls into a single update for better performance.
  	so whenever you want to update the value based on the previous state, we need to send function inside set state method, instead of object. 
  	
@@ -205,7 +258,7 @@ Function Component
      
  
      
-Binding Event Handlers
+Binding Event Handlers(refer EventBind.js)
 * "this" keyword is undefined in an eventhandler hence we need to bind the event in react class components
 * There are different methods to bind the events
 Approach 1:- Using bind keyword
@@ -265,7 +318,7 @@ Approach 4:-Use Arrow function as class property
             message: 'Goodbye'
         })
     }
-Review - Its still in experimentation stage, as per 2018 tutorial
+
 
 
 
@@ -341,8 +394,8 @@ List Rendering(refer todo.js and NameList.js)
      
      
 Lists and Keys
-* A "key" is special string attribute you need to include when creating lists of elements.
-* keys a give elements a stable identity 
+* A "key" is special string/int attribute you need to include when creating lists of elements.
+* keys give elements a stable identity 
 * keys help React identify which items have changed, are added, or are removed.
 * Help in efficient update of user interface
 * Refer NameList.js and todo.js
@@ -376,36 +429,13 @@ Approach 3:
 	=>CSS modules 
 	=>classes are locally scoped, css style applies all the child components as well
 	=>but "import Styles from './appStyles.module.css'" cannot be imported for any child components as they are imported as style
+	
+Reference - https://medium.com/@pioul/modular-css-with-react-61638ae9ea3e#.re1pdcz87
  	
+						--x--x--x--x--x--x--x--x--x--x--
 
-
-Basics of form handling
- Controlled Component:
- 	=>In the input tag mention value attribute where we will be giving state, that is {this.state.username} continue with trailing 	space and give an event 
- 	#<input type='text' value={this.state.username} onChange={this.handleUsernameChange} />
- 	=>follow the same procedure to change the state, that is initiate with an empty string.
- 	=>To catch the content coming from input tag use "event.target.value" in setstate and pass event as an argument in the handler function.
- 	=>for <select> tag use the first option while initiating the state.
- 	=>Dont forget the prevent default method to be given for submit button, you can give that in the handler function.
- 	=>When ever you write something in input box, state gets refreshed and chenged accordingly.
  	
-
-
-LifeCycle Methods
-* Life Cycle method is the cycle which goes through when we create and render the component.
-* Life Cycle involves 4 different methods mainly.
-  =>Mounting= When an instance of a component is being created and inserted into the DOM 
-  =>Updating= When a component is bieng re-rendered as a result of changes to either its props or state
-  =>Unmounting= when a component is being removed from the DOM 
-  =>Error Handling = when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
-* In each of the above method there are many sub methods.
-  =>Mounting = constructor, static gerDerivedStateFromProps, render and componentDidMount
-  =>Updating = static getDerivedStateFromProps, shouldComponentUpdate, render, getSnapshotBeforeUpdate and componentDidupdate.
-  =>Unmounting = componentWillUnmount
-  =>Error Handling = static getDerivedStateFromError and componentDidCatch
-  
-  
-Basics of Form
+Basics of Form(Refer Form.js)
 * the form, label and input tags are as used in html
 * the value of the input field is set to the state property, and there is onChange event fired whenever there is change in the input field value. in the onChange handler we use the setstate method to update the state.
 * we should pass a parameter to the handler(that is event handler function), that is "event" which helps to  extract or catch the value given in input element using event.target.
@@ -417,10 +447,9 @@ Basics of Form
     }  
 * For input and textarea and other fields, the state can be empty string, but for select tag, intialy the state must be one of the option, otherwise setstate doesn't work on that.
 * to handle the submit of the form, add onSubmit event on the form tag, which can be difined using a handler function(don't forget to use a prevent default function)
-
-
-
-
+ 
+						--x--x--x--x--x--x--x--x--x--x--	
+  
 Lifecycle methods
 * When we create a react component, the component goes through several stages in its life cycle
 * There are Lifecycle methods for class components, this methods doesn't exist for functional components.
@@ -445,7 +474,7 @@ Mounting Lifecycle Methods(refer to LifecycleA.js)
       =>super(props) should be used when building our own constructor, otherwise this.props won't work
       =>Only in constructor we can directly call this.state to overwrite the state in all other cases it should use this.setstate.
       
-* static getDerivedFormProps(props, state) - Rarely used lifecycle method, this method are used when the state of the component dependson the changes in props over time.
+* static getDerivedFromProps(props, state) - Rarely used lifecycle method, this method are used when the state of the component dependson the changes in props over time.
 	=> since this method is static method, we cannot use "this" keyword in this method, so you have to just return an object which represent a new state of a component.
 	=>Should not call http request in this method as well.(should not cause side effects)
 	
@@ -483,7 +512,20 @@ Updating Lifecycle Methods()(refer LifecycleA.js and LifecycleB.js files)
 		
 
 * Render() - Same as above .
-
+<header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
 * getSnapBeforeUpdate(prevProps, PrevState) - 
 		=>gets previous props and states as arguments and called right before the changes from the virtual DOM are to be 		reflected in the DOM 
 	=> Capture some information from the DOM.
@@ -508,7 +550,7 @@ Unmounting Phase Method
 			=>Do not call the setState method.
 			
 
-
+						--x--x--x--x--x--x--x--x--x--x--
 
 
 Fragments (Refer to Table.js and Column.js)
@@ -516,12 +558,12 @@ Fragments (Refer to Table.js and Column.js)
 * It is termed in the advanced section of the document.
 * Fragments lets you group list of children eliments without adding extra nodes to the DOM.
 * Remember we discussed about jsx, where all the code should be enclosed in one tag that is div tag,  it is simply creating one extra node in react DOM, so go ahead and remove the div tag and include <React.Fragments>.(Refer FragmentDemo.js)
-* Imagine this scenario, Where you have parent and child component, in parent component you are using <table> tag as main tag in jsx, so no problem, but you want pust columns of a table in child component, then you are writing <td> tags inside jsx enclosed by div tag, hence react will give an error saying, you cannot include <td> tag a child of <div> tag, so you <React Fragments> comes to your help.
+* Imagine this scenario, Where you have parent and child component, in parent component you are using <table> tag as main tag in jsx, so no problem, but you want put columns of a table in child component, then you are writing <td> tags inside jsx enclosed by div tag, hence react will give an error saying, you cannot include <td> tag a child of <div> tag, so you <React Fragments> comes to your help.
 * Items in the list nees key prop, hence Fragments take attibutes key={item.id}
 * <React.fragments> can be replaced with <> and </>, there is on e limitations for this, that is we cannot pass in key attribute.
 
 
-
+						--x--x--x--x--x--x--x--x--x--x--
 
 
 
@@ -560,19 +602,28 @@ Pure (Refer PureComp.js, RegularComp.js, ParentComp.js)
 	=> Always return new object or array when dealing with pure components.
 	=> It is a good idea to ensure that all the children compoenents are also pure to avoid unexpected behaviour.
 	
+						--x--x--x--x--x--x--x--x--x--x--
 
 Memo(refer Memocomponent.js and Parentcomponent.js)
 
 => Pure components only work with class components, the same thing can be achieved in functional components as well and that's where "memo" comes into picture.
 => Just write function component and in the end at "default export" export the component with React.memo(Memocomponent) to use memo.
 
+						--x--x--x--x--x--x--x--x--x--x--
 
-
-LifeCycle Methods
+LifeCycle Hooks
 
 * https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
 
+Lifecycle methods in Hooks
+* https://medium.com/javascript-in-plain-english/lifecycle-methods-substitute-with-react-hooks-b173073052a
 
+useEffect 
+*https://www.robinwieruch.de/react-hooks-fetch-data
+
+https://dev.to/papasanto/build-a-react-hooks-shopping-cart-with-usestate-and-useeffect-39hk
+https://academind.com/tutorials/react-hooks-introduction/
+						--x--x--x--x--x--x--x--x--x--x--
 
 Styling Library - Material UI Library
 
@@ -584,7 +635,7 @@ Styling Library - Material UI Library
 
 
 =>Button - first import button from @material-ui/core/Button 
-	* it takes 3 attrs startIcon, variant, color
+	* it takes attrs like startIcon, variant, color, save
 	* <Button startIcon = {<SaveIcon />} variant="contained" color="primary">	
 	
 =>TextField - varient, color, type
@@ -631,25 +682,28 @@ Styling Library - Material UI Library
 
 Refer 
 
+						--x--x--x--x--x--x--x--x--
 
 
 
-
-React Router DOM
+React Router DOM(Refer my-media app)
 
 * npm install react-router-dom
-* What routing implies should be self explanatory. When we go from one section to another or when you click a link that is supposed to show you some different content, our browser loads a different view. You might say that routing is pretty simple, just include the path to different HTML pages inside the href attribute however single page applications don’t work this way. They don’t load a completely different HTML rather just load a different view that corresponds to that particular route. To implement this in react we’d first have to install the React Router package.
+* What routing implies should be self explanatory. When we go from one section to another or when you click a link that is supposed to show you some different content, our browser loads a different view. You might say that routing is pretty simple, just include the path to different HTML pages inside the href attribute, however single page applications don’t work this way. They don’t load a completely different HTML rather just load a different view that corresponds to that particular route. To implement this in react we’d first have to install the React Router package.
 * First we need to import certain components from the Router Module. The first one is BrowserRouter which tells React that everything that goes inside this tag will give you some information about routing. The next thing we want is Switch which will ensure that you can go to only one route at a time. Finally we want the Route Component which will tell the App Component to render a certain component on visiting a certain URL.
 
 * npm install axios
 
 * https://medium.com/swlh/exploring-react-part-1-a6e9368c9d81
 * https://medium.com/swlh/exploring-react-higher-order-components-and-redux-5a683188aec8
+* https://stackoverflow.com/questions/49162311/react-difference-between-route-exact-path-and-route-path#:~:text=The%20exact%20param%20disables%20the,match%20to%20the%20current%20url.
+* https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/NavLink.md
 
 
-
+						-x--x--x--x--x--x--x-
 
 React Higher Order Components
+
 * Imagine the scenario where you are using same code or logic in different components, it is waste of time to duplicate everything again and again right?.. , the solution we can imagine is write a functionality in parent component and define state and handler in child components. This works fine if you are using next consicutive child to define state and handler, but what happens when theu are scattered,  at this point higher order component comes into picture.(refer clickcounter and HoverCounter.js commented section)
 * Higher Order Component(HOC) - a pattern where a function takes a component as an argument and returns a new component
 	Structure =>  	const NewComponent = higherOrderCompoenent( original component )
@@ -658,7 +712,97 @@ React Higher Order Components
 
 
 React and Django Integration todo application
+
 * https://www.digitalocean.com/community/tutorials/build-a-to-do-application-using-django-and-react
+* https://towardsdev.com/django-react-app-from-scratch-to-deployment-part-1-8a2fa9a97f1
+
+						    -x--x--x--x--x--x--x--x-
+
+
+proptypes
+When developing a React application, you might encounter the need for a prop to be structured and defined to avoid bugs and errors. Just like a function might have mandatory arguments, a React component might require a prop to be defined, otherwise, it will not render properly. If you forget to pass a required prop into a component that needs it, it could cause your app to behave unexpectedly.
+
+PropTypes is React’s internal mechanism for adding type checking to components.
+React components use a special property named propTypes to set up type checking.
+
+Syntax
+/**
+ * FUNCTIONAL COMPONENTS
+ */
+function ReactComponent(props) {
+  // ...implement render logic here
+}
+
+ReactComponent.propTypes = {
+  // ...prop type definitions here
+}
+
+
+/**
+ * CLASS COMPONENTS: METHOD 1
+ */
+class ReactComponent extends React.Component {
+  // ...component class body here
+}
+
+ReactComponent.propTypes = {
+  // ...prop type definitions here
+}
+
+
+/**
+ * CLASS COMPONENTS: METHOD 2
+ * Using the `static` class properties syntax
+ */
+class ReactComponent extends React.Component {
+  // ...component class body here
+  
+  static propTypes = {
+    // ...prop type definitions here
+  }
+}
+
+If default props are set for the React component, the values are first resolved before type checking against propTypes. Therefore, default values are also subject to the prop type definitions.
+
+Note that propTypes type checking only happens in development mode, enabling you to catch bugs in your React application while developing. For performance reasons, it is not triggered in the production environment.
+
+REF: https://blog.logrocket.com/validating-react-component-props-with-prop-types-ef14b29963fc/
+  Why Redux: https://www.newline.co/fullstack-react/articles/redux-with-mark-erikson/
+  	   : https://daveceddia.com/what-does-redux-do/
+  	   : https://daveceddia.com/how-does-redux-work/
+
+
+
+
+							-x--x--x--x--x--x--x--x--x-
+							
+
+React-Redux
+* install redux, react-redux, redux-thunk
+* provider is nothing but the component, consider it as glue for react and redux.
+
+createStore(reducer, [preloadedState], [enhancer])
+
+Creates a Redux store that holds the complete state tree of your app. There should only be a single store in your app.
+
+reducer (Function): A reducing function that returns the next state tree, given the current state tree and an action to handle.
+
+[preloadedState] (any): The initial state. You may optionally specify it to hydrate the state from the server in universal apps, or to restore a previously serialized user session. If you produced reducer with combineReducers, this must be a plain object with the same shape as the keys passed to it. Otherwise, you are free to pass anything that your reducer can understand.
+
+[enhancer] (Function): The store enhancer. You may optionally specify it to enhance the store with third-party capabilities such as middleware, time travel, persistence, etc. The only store enhancer that ships with Redux is applyMiddleware().
+
+
+
+						--x--x--x--x--x--x--x--x--x--x--
+Knox authentication, React and Django
+https://medium.com/technest/implement-user-auth-in-a-django-react-app-with-knox-fc56cdc9211c
+
+
+						--x--x--x--x--x--x--x--x--x--x--x--
+
+import ReactDOM from 'react-dom';						
+ReactDOM.render(<MyHeader />, document.getElementById('root'));
+
 
 
 

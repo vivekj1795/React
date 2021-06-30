@@ -1,0 +1,16 @@
+$ docker run hello-world = to download image and run container and exit
+$ docker container ls --all = to see which are the images downloaded.
+docker ps - to view running containers in the background
+docker-compose up = to create an image and run the container
+docker system prune = to kill all the containers and delete the image
+docker-compose down = to quit all the  container running in background
+docker exec -it [container_name] bash = to get inside a running container and change anything inside
+docker-compose up --force-recreate --build = To recreate the docker container without stopping the running container
+http://3.128.196.76.xip.io:8000/
+docker exec -it name-of-container bash = getting inside the container folder system
+ls -lsa = list all the folder inside the container
+cat "filename" example:[conf/httpd.conf] = open a file inside the container
+docker inspect "container_id" = To check the IPAddress of that specific container for connecting it to postgresql
+
+
+

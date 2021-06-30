@@ -1,0 +1,39 @@
+
+.clg_logoo{
+    width:75px;
+    height:75px;
+    margin-top: 10px;
+}
+.container-md{
+    padding-left: 0px;
+    padding-right: 0px;
+    max-width: 900px;
+}
+.projects_image{
+
+    height:120px;
+    width:150px;
+    border-radius:2px;
+    border:solid;
+    border-color:orange;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.name{
+    font-weight:600;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left:20px;
+    margin-top:55px;
+}
+.companyname{
+    float:right; 
+    margin-top:55px;
+    padding-left: 10px;
+
+}
+.companylogo{
+    width:30px;
+    height:35px ;
+    float: right; 
+    margin-top:55px;
+}
