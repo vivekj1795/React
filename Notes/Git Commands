@@ -11,7 +11,6 @@ problem  - The “fatal: refusing to merge unrelated histories” Git error occu
 Solution - The error is resolved by toggling the allow-unrelated-histories switch. After a git pull or git merge command, add the following   "git pull origin master --allow-unrelated-histories"
 
 
-Personal Access token - 6313acc1847902e7d680c7a567184e0c7606734a
 
 git diff <branchname>- The <banchname> you want to merge to your current branch
 git merge <branchname> - The <banchname> you want to merge to your current branch
