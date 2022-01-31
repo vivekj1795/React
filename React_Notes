@@ -1,5 +1,10 @@
 For react application donwnload and install node js
-To create react application run - npx create-react-app "project name"
+Environment path - C:\Program Files\nodejs
+https://stackoverflow.com/questions/48143945/what-is-the-err-code-enolocal-npm-err-could-not-install-from-error
+https://stackoverflow.com/questions/52770553/create-react-app-hangs-when-initializing-an-app
+
+
+To create react application run - npx create-react-app "project name"d
 cd "project name" and run npm start 
 Go to src/App.js and change Edit to "hello world"
 Your basic first application is ready.
@@ -245,7 +250,7 @@ Destructuring ==> In Class Components(refer Welcome.js)
 Event Handling ==>(EventBind.js)
 Function Component
 * React Events are defined using camelCase rather than lowercase
-* In Jsx instad of passing string in eventhandler we will be passing function, hence it is specified in curly brackets{}
+* In Jsx instead of passing string in eventhandler we will be passing function, hence it is specified in curly brackets{}
 * While specifying the function in the eventhandler it is function not function call, so dont use paranthesis after it
 	Wrong                                                                     Correct
     <button onClick={clickHandler()}>click</button>                      <button onClick={clickHandler}>click</button>
@@ -623,6 +628,12 @@ useEffect
 
 https://dev.to/papasanto/build-a-react-hooks-shopping-cart-with-usestate-and-useeffect-39hk
 https://academind.com/tutorials/react-hooks-introduction/
+https://blog.logrocket.com/how-to-get-previous-props-state-with-react-hooks/ - Prevprops in lifecycle hooks
+
+https://stackoverflow.com/questions/41052598/reactjs-array-push-function-not-working-in-setstate
+
+
+
 						--x--x--x--x--x--x--x--x--x--x--
 
 Styling Library - Material UI Library
@@ -698,6 +709,7 @@ React Router DOM(Refer my-media app)
 * https://medium.com/swlh/exploring-react-higher-order-components-and-redux-5a683188aec8
 * https://stackoverflow.com/questions/49162311/react-difference-between-route-exact-path-and-route-path#:~:text=The%20exact%20param%20disables%20the,match%20to%20the%20current%20url.
 * https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/NavLink.md
+* https://stackoverflow.com/questions/51974369/what-is-the-difference-between-hashrouter-and-browserrouter-in-react
 
 
 						-x--x--x--x--x--x--x-
@@ -802,6 +814,17 @@ https://medium.com/technest/implement-user-auth-in-a-django-react-app-with-knox-
 
 import ReactDOM from 'react-dom';						
 ReactDOM.render(<MyHeader />, document.getElementById('root'));
+
+
+						--x--x--x--x--x--x--x--x--x--x--x--x--
+						
+React Higher Order Components
+
+* Imagine the scenario where you are using the same code or logic in different components, it is a waste of time to duplicate everything again and again right?.. The solution we can imagine is to write functionality in the parent component and define state and handler in child components. This works fine if you are using the next consecutive child to define state and handler, but what happens when they are scattered,  at this point a higher order component comes into picture.(refer click counter and HoverCounter.js commented section)
+* Higher Order Component(HOC) - a pattern where a function takes a component as an argument and returns a new component
+	Structure =>  	const NewComponent = higher Order Component( original component )
+* Takes original component adds functionality through higher order component and produces the new enhanced
+
 
 
 
